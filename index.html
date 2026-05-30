@@ -181,21 +181,24 @@
                         <span class="tag">JavaScript</span>
                         <span class="tag">React.js</span>
                         <span class="tag">Angular10</span>
+                        <span class="tag">Webflux</span>
+                        <span class="tag">Reactive Programming</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h4>Databases</h4>
+                    <h4>Databases & Others</h4>
                     <div class="skill-tags">
                         <span class="tag">MySQL</span>
                         <span class="tag">PostgreSQL</span>
+                        <span class="tag">AzureSQL</span>
                         <span class="tag">CosmosDB</span>
                         <span class="tag">DynamoDB</span>
                         <span class="tag">Elasticsearch</span>
                         <span class="tag">MongoDB</span>
-                        <span class="tag">Webflux</span>
+                        <span class="tag">InfluxDB</span>
+                        <span class="tag">Databricks</span>
                         <span class="tag">Swagger</span>
-                        <span class="tag">Reactive Programming</span>
                     </div>
                 </div>
 
@@ -204,12 +207,15 @@
                     <div class="skill-tags">
                         <span class="tag">AWS Cloud</span>
                         <span class="tag">Azure Cloud</span>
-                        <span class="tag">GCP</span>
+                        <span class="tag">ArgoCD</span>
                         <span class="tag">Kubernetes</span>
                         <span class="tag">Docker</span>
                         <span class="tag">Jenkins</span>
                         <span class="tag">Kafka</span>
-                        <span class="tag">Opentelemetry</span>
+                        <span class="tag">Keycloak</span>
+                        <span class="tag">GitOps & CI/CD Tooling</span>
+                        <span class="tag">Cloud Networking</span>
+                        <span class="tag">Serverless Computing</span>
                     </div>
                 </div>
 
@@ -226,6 +232,7 @@
                         <span class="tag">Splunk</span>
                         <span class="tag">JSON/JOLT</span>
                         <span class="tag">Grafana</span>
+                        <span class="tag">Opentelemetry</span>
                     </div>
                 </div>
             </div>
@@ -369,217 +376,70 @@
             <div class="resources-category">
                 <h3 class="category-title">🎓 Udemy Courses</h3>
                 <p class="category-subtitle">Professional courses and certifications completed on Udemy</p>
-                <div class="udemy-grid">
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Spring Boot Microservices with Docker and Kubernetes</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Master building scalable microservices with Spring Boot, Docker
-                            containerization, and Kubernetes orchestration.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Spring Boot</span>
-                            <span class="course-tag">Microservices</span>
-                            <span class="course-tag">Docker</span>
-                            <span class="course-tag">Kubernetes</span>
-                        </div>
+
+                <!-- Course Controls -->
+                <div class="course-controls">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <input type="text" id="courseSearch" placeholder="🔍 Search courses..." class="search-input"
+                            onkeyup="handleSearch()">
+                        <button class="clear-search-btn" onclick="clearSearch()">✕</button>
                     </div>
 
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Complete Kubernetes Bootcamp</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Comprehensive guide to Kubernetes container orchestration,
-                            deployment strategies, and production-ready configurations.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Kubernetes</span>
-                            <span class="course-tag">Docker</span>
-                            <span class="course-tag">DevOps</span>
-                            <span class="course-tag">Cloud</span>
+                    <!-- Filters and Sorting -->
+                    <div class="filters-sorting">
+                        <!-- Status Filter -->
+                        <div class="filter-group">
+                            <label for="statusFilter">Filter by Status:</label>
+                            <select id="statusFilter" class="filter-select" onchange="applyFilters()">
+                                <option value="">All Courses</option>
+                                <option value="Completed">Completed</option>
+                                <option value="In Progress">In Progress</option>
+                            </select>
                         </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy" class="filter-select" onchange="applySort()">
+                                <option value="recent">Most Recent</option>
+                                <option value="alphabetical">A - Z</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+
+                        <!-- Export Button -->
+                        <button class="export-btn" onclick="exportCoursesToJSON()">
+                            📥 Export JSON
+                        </button>
                     </div>
 
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>AWS Solutions Architect Associate Certification</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">In-depth AWS course covering EC2, S3, RDS, Lambda, and other
-                            essential AWS services for architecture design.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">AWS</span>
-                            <span class="course-tag">Cloud Architecture</span>
-                            <span class="course-tag">Certification</span>
-                        </div>
+                    <!-- Results Count -->
+                    <div class="results-count">
+                        <span id="courseCount">Showing all courses</span>
                     </div>
+                </div>
 
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>React - The Complete Guide</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Master React.js with hooks, context API, routing, and state
-                            management for building modern web applications.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">React</span>
-                            <span class="course-tag">JavaScript</span>
-                            <span class="course-tag">Frontend</span>
-                        </div>
+                <!-- Courses Grid -->
+                <div class="udemy-grid" id="udemyCoursesContainer">
+                    <!-- Courses will be dynamically inserted here -->
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="pagination-controls">
+                    <button class="pagination-btn prev-btn" onclick="previousPage()"
+                        title="Previous page (← arrow key)">← Previous</button>
+                    <div class="page-info">
+                        <span id="pageNumber">Page 1</span>
                     </div>
+                    <button class="pagination-btn next-btn" onclick="nextPage()" title="Next page (→ arrow key)">Next
+                        →</button>
+                </div>
 
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Java Programming for Beginners to Advanced</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Comprehensive Java course covering OOP, collections,
-                            multithreading, and advanced design patterns.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Java</span>
-                            <span class="course-tag">OOP</span>
-                            <span class="course-tag">Programming</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>System Design Interview - Complete Course</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Learn to design large-scale distributed systems, databases, and
-                            solve real-world architecture problems.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">System Design</span>
-                            <span class="course-tag">Interview Prep</span>
-                            <span class="course-tag">Architecture</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Java Certificat Prep: OCA (1Z0-808) & OCP (1Z0-829, 1Z0-830)</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Everything you need to know to pass Oracle exams (808, 829, 830)
-                            and become fully certified Java Programmer/Developer.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Java</span>
-                            <span class="course-tag">Certification</span>
-                            <span class="course-tag">Programming</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Data Structures & Algorithms in Java + 150 Leetcode Problems</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Comprehensive course covering essential data structures and
-                            algorithms in Java, with 150 practice problems from Leetcode.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Java</span>
-                            <span class="course-tag">Algorithms</span>
-                            <span class="course-tag">Data Structures</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>GitHub Copilot Beginner to Pro - AI for Coding & Development</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Learn to use GitHub Copilot effectively for coding and development
-                            tasks.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">GitHub</span>
-                            <span class="course-tag">Copilot</span>
-                            <span class="course-tag">AI</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>100 Days of Code™: The Complete Python Pro Bootcamp</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Master Python by building 100 projects in 100 days.
-                            Learn data science, automation, build websites, games and apps!</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Python</span>
-                            <span class="course-tag">Data Science</span>
-                            <span class="course-tag">Automation</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>GitOps with Kubernetes (K8S), Terraform, Azure and AWS</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Implement GitOps principles (pull based) with Azure Cloud (AKS),
-                            AWS and create project infrastructure using Terraform</p>
-                        <div class="course-tags">
-                            <span class="course-tag">GitOps</span>
-                            <span class="course-tag">Kubernetes</span>
-                            <span class="course-tag">Terraform</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Go: The Complete Developer's Guide (Golang)</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Master the fundamentals and advanced features of the Go
-                            Programming Language (Golang)</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Go</span>
-                            <span class="course-tag">Programming</span>
-                            <span class="course-tag">Backend</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Master Microservices with Spring Boot and Spring Cloud</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Java Spring Boot Microservices 5-in-1 - Spring Boot, Spring Cloud,
-                            Docker, Kubernetes and REST API (REST Web Services)</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Java</span>
-                            <span class="course-tag">Spring Boot</span>
-                            <span class="course-tag">Microservices</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>The Complete Guide to Becoming a Software Architect</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">The most comprehensive guide that will make you a Software
-                            Architect, the most desired role in the software industry.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Software Architecture</span>
-                            <span class="course-tag">System Design</span>
-                            <span class="course-tag">Career Growth</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>Apache Kafka Series - Learn Apache Kafka for Beginners v3</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">START HERE: Learn Apache Kafka 4.0 Ecosystem, Core Concepts, Real
-                            World Java Producers/Consumers & Big Data Architecture</p>
-                        <div class="course-tags">
-                            <span class="course-tag">Kafka</span>
-                            <span class="course-tag">Streaming</span>
-                            <span class="course-tag">Big Data</span>
-                        </div>
-                    </div>
-
-                    <div class="udemy-card">
-                        <div class="udemy-logo">🎬</div>
-                        <h4>The OWASP Top 10 2025 - Deep Dive</h4>
-                        <p class="instructor">Completed</p>
-                        <p class="course-description">Learn about the top 10 web application security risks and how to
-                            mitigate them.</p>
-                        <div class="course-tags">
-                            <span class="course-tag">OWASP</span>
-                            <span class="course-tag">Security</span>
-                            <span class="course-tag">Web Applications</span>
-                        </div>
-                    </div>
-
+                <!-- Keyboard Help -->
+                <div class="keyboard-help">
+                    <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+K to focus
+                        search</p>
                 </div>
             </div>
 
