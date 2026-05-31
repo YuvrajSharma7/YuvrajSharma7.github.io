@@ -2247,3 +2247,555 @@ mark {
         font-size: 16px;
     }
 }
+
+/* ==================== BOOK METADATA ====================*/
+.book-meta {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.book-category {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(83, 52, 131, 0.2));
+    color: var(--secondary-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--secondary-color);
+}
+
+.book-year {
+    background: rgba(255, 0, 110, 0.2);
+    color: var(--accent-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--accent-color);
+}
+
+/* ==================== BOOK TOPICS ====================*/
+.book-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+}
+
+.topic-tag {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(39, 174, 96, 0.15));
+    color: #2ecc71;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #2ecc71;
+    transition: var(--transition);
+}
+
+.topic-tag:hover {
+    background: #2ecc71;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ==================== BOOK RATING ====================*/
+.book-rating {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f39c12;
+    letter-spacing: 1px;
+}
+
+/* ==================== RESOURCE CARD ENHANCEMENTS ====================*/
+.resource-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 255, 255, 0.98) 100%);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition);
+    border: none;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+}
+
+.resource-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.resource-card:hover {
+    box-shadow: 0 24px 48px rgba(0, 212, 255, 0.2);
+    transform: translateY(-10px);
+}
+
+.resource-card:hover::after {
+    top: -20%;
+    right: -20%;
+}
+
+.resource-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.resource-card .author {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card .description {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card .book-meta,
+.resource-card .book-topics,
+.resource-card .book-rating {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== RESPONSIVE BOOK CARDS ====================*/
+@media (max-width: 768px) {
+    .resource-card {
+        padding: 20px;
+    }
+
+    .resource-icon {
+        font-size: 48px;
+    }
+
+    .resource-card h4 {
+        font-size: 18px;
+    }
+
+    .book-meta,
+    .book-topics {
+        gap: 8px;
+    }
+
+    .book-category,
+    .book-year {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    .topic-tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .resource-card {
+        padding: 15px;
+    }
+
+    .resource-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .resource-card h4 {
+        font-size: 16px;
+    }
+
+    .resource-card .author {
+        font-size: 13px;
+    }
+
+    .resource-card .description {
+        font-size: 13px;
+    }
+
+    .book-meta {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .book-category,
+    .book-year {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .topic-tag {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+
+    .book-rating {
+        font-size: 12px;
+    }
+}
+
+/* ==================== CERTIFICATE CARD ENHANCEMENTS ====================*/
+.certificate-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 255, 255, 0.98) 100%);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid transparent;
+}
+
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    transition: height 0.3s ease;
+}
+
+.certificate-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.certificate-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 24px 48px rgba(0, 212, 255, 0.3);
+}
+
+.certificate-card:hover::after {
+    top: -20%;
+    right: -20%;
+}
+
+.certificate-card:hover::before {
+    height: 8px;
+}
+
+.certificate-card.expiring-soon {
+    border-top: 5px solid #f39c12;
+}
+
+.certificate-card.expiring-soon::before {
+    background: #f39c12;
+}
+
+/* ==================== CERTIFICATE ICON ====================*/
+.cert-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* ==================== CERTIFICATE TITLE AND ISSUER ====================*/
+.certificate-card h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.certificate-card .issuer {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== CERTIFICATE STATUS ====================*/
+.cert-status {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(39, 174, 96, 0.15));
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.status-expired {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.15));
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.status-lifetime {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(108, 52, 131, 0.15));
+    color: #9b59b6;
+    border: 1px solid #9b59b6;
+}
+
+/* ==================== CERTIFICATE DETAILS ====================*/
+.cert-details {
+    background: linear-gradient(135deg, rgba(15, 52, 96, 0.08), rgba(0, 212, 255, 0.08));
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.cert-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.cert-detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.cert-detail-item .label {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.cert-detail-item .value {
+    color: var(--primary-color);
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.cert-id {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+}
+
+/* ==================== CERTIFICATE TAGS ====================*/
+.cert-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.cert-tag {
+    background: linear-gradient(135deg, rgba(15, 52, 96, 0.1), rgba(0, 212, 255, 0.1));
+    color: var(--primary-color);
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--secondary-color);
+    transition: var(--transition);
+    cursor: default;
+}
+
+.cert-tag:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* ==================== EXPIRING WARNING ====================*/
+.expiring-warning {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.2));
+    color: #f39c12;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    border-left: 3px solid #f39c12;
+}
+
+/* ==================== VIEW CERTIFICATE BUTTON ====================*/
+.view-cert-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: 0 8px 16px rgba(15, 52, 96, 0.2);
+    position: relative;
+    z-index: 1;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.view-cert-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 212, 255, 0.3);
+}
+
+.view-cert-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ==================== CERTIFICATES GRID ====================*/
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+/* ==================== RESPONSIVE CERTIFICATE CARDS ====================*/
+@media (max-width: 768px) {
+    .certificate-card {
+        padding: 20px;
+    }
+
+    .cert-icon {
+        font-size: 48px;
+    }
+
+    .certificate-card h4 {
+        font-size: 18px;
+    }
+
+    .cert-details {
+        padding: 12px;
+    }
+
+    .cert-detail-item {
+        font-size: 12px;
+    }
+
+    .cert-tag {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    .cert-status {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .certificate-card {
+        padding: 15px;
+    }
+
+    .cert-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .certificate-card h4 {
+        font-size: 16px;
+    }
+
+    .certificate-card .issuer {
+        font-size: 13px;
+    }
+
+    .cert-details {
+        padding: 10px;
+    }
+
+    .cert-detail-item {
+        font-size: 11px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .cert-tags {
+        gap: 6px;
+    }
+
+    .cert-tag {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .cert-status {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    .expiring-warning {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .view-cert-btn {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+}

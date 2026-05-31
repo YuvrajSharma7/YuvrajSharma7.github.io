@@ -275,100 +275,76 @@
             <!-- Books Section -->
             <div class="resources-category">
                 <h3 class="category-title">📚 Books & Publications</h3>
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">📘</div>
-                        <h4>Spring in Action</h4>
-                        <p class="author">Craig Walls</p>
-                        <p class="description">Essential guide to building enterprise applications with Spring Boot and
-                            Spring Framework.</p>
+                <p class="category-subtitle">Essential resources that shaped my technical knowledge</p>
+
+                <!-- Book Controls -->
+                <div class="course-controls">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <input type="text" id="bookSearch" placeholder="🔍 Search books..." class="search-input"
+                            onkeyup="handleBookSearch()">
+                        <button class="clear-search-btn" onclick="clearBookSearch()">✕</button>
                     </div>
 
-                    <div class="resource-card">
-                        <div class="resource-icon">🏗️</div>
-                        <h4>Microservices Patterns</h4>
-                        <p class="author">Chris Richardson</p>
-                        <p class="description">Comprehensive patterns for building distributed microservices
-                            architecture.</p>
+                    <!-- Filters and Sorting -->
+                    <div class="filters-sorting">
+                        <!-- Category Filter -->
+                        <div class="filter-group">
+                            <label for="categoryFilter">Filter by Category:</label>
+                            <select id="categoryFilter" class="filter-select" onchange="applyBookFilters()">
+                                <option value="">All Categories</option>
+                                <option value="Backend">Backend</option>
+                                <option value="DevOps">DevOps</option>
+                                <option value="Frontend">Frontend</option>
+                                <option value="System Design">System Design</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="Distributed Systems">Distributed Systems</option>
+                                <option value="Interview Prep">Interview Prep</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="bookSortBy">Sort by:</label>
+                            <select id="bookSortBy" class="filter-select" onchange="applyBookSort()">
+                                <option value="alphabetical">A - Z</option>
+                                <option value="author">Author</option>
+                                <option value="category">Category</option>
+                            </select>
+                        </div>
+
+                        <!-- Export Button -->
+                        <button class="export-btn" onclick="exportBooksToJSON()">
+                            📥 Export JSON
+                        </button>
                     </div>
 
-                    <div class="resource-card">
-                        <div class="resource-icon">🐳</div>
-                        <h4>Docker Deep Dive</h4>
-                        <p class="author">Nigel Poulton</p>
-                        <p class="description">Complete guide to containerization and Docker ecosystem for modern
-                            development.</p>
+                    <!-- Results Count -->
+                    <div class="results-count">
+                        <span id="bookCount">Showing all books</span>
                     </div>
+                </div>
 
-                    <div class="resource-card">
-                        <div class="resource-icon">☸️</div>
-                        <h4>Kubernetes in Action</h4>
-                        <p class="author">Marko Lukša</p>
-                        <p class="description">Practical guide to orchestrating containers at scale with Kubernetes.</p>
-                    </div>
+                <!-- Books Grid -->
+                <div class="resources-grid" id="booksContainer">
+                    <!-- Books will be dynamically inserted here -->
+                </div>
 
-                    <div class="resource-card">
-                        <div class="resource-icon">⚛️</div>
-                        <h4>Learning React</h4>
-                        <p class="author">Alex Banks & Eve Porcello</p>
-                        <p class="description">Modern approach to building user interfaces with React and JavaScript.
-                        </p>
+                <!-- Pagination Controls for Books -->
+                <div class="pagination-controls">
+                    <button class="pagination-btn prev-btn" onclick="previousBookPage()"
+                        title="Previous page (← arrow key)">← Previous</button>
+                    <div class="page-info">
+                        <span id="bookPageNumber">Page 1</span>
                     </div>
+                    <button class="pagination-btn next-btn" onclick="nextBookPage()"
+                        title="Next page (→ arrow key)">Next →</button>
+                </div>
 
-                    <div class="resource-card">
-                        <div class="resource-icon">📊</div>
-                        <h4>Designing Data-Intensive Applications</h4>
-                        <p class="author">Martin Kleppmann</p>
-                        <p class="description">Deep dive into distributed systems, databases, and system design
-                            fundamentals.</p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🔐</div>
-                        <h4>OAuth 2.0 in Action</h4>
-                        <p class="author">Justin Richer & Antonio Sanso</p>
-                        <p class="description">Complete guide to implementing modern authentication and authorization
-                            patterns.</p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">☁️</div>
-                        <h4>AWS Certified Solutions Architect Associate</h4>
-                        <p class="author">Neal Davis & Jon Bonso</p>
-                        <p class="description">Comprehensive study material for AWS Solutions Architect certification.
-                        </p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🧪</div>
-                        <h4>Test Driven Development</h4>
-                        <p class="author">Kent Beck</p>
-                        <p class="description">Foundational practices for writing maintainable code through effective
-                            testing.</p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🏛️</div>
-                        <h4>System Design Interview</h4>
-                        <p class="author">Alex Xu</p>
-                        <p class="description">Practical guide to designing scalable systems and solving complex
-                            architecture problems.</p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">📈</div>
-                        <h4>The Data Warehouse Toolkit</h4>
-                        <p class="author">Ralph Kimball</p>
-                        <p class="description">Essential patterns for building data warehouses and analytics solutions.
-                        </p>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🔍</div>
-                        <h4>Cracking the Coding Interview</h4>
-                        <p class="author">Gayle Laakmann McDowell</p>
-                        <p class="description">Problem-solving strategies and coding interview preparation guide.</p>
-                    </div>
+                <!-- Keyboard Help -->
+                <div class="keyboard-help">
+                    <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+B to focus
+                        search</p>
                 </div>
             </div>
 
@@ -526,168 +502,72 @@
                 <h3 class="category-title">🎖️ Certificates & Licenses</h3>
                 <p class="category-subtitle">Professional certifications and credentials from LinkedIn and other
                     platforms</p>
-                <div class="certificates-grid">
-                    <div class="certificate-card">
-                        <div class="cert-icon">☁️</div>
-                        <h4>AWS Certified Solutions Architect - Associate</h4>
-                        <p class="issuer">Amazon Web Services</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">August 2024</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">August 2027</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">AWS-SAA-2024</span>
-                            </div>
-                        </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">Cloud Computing</span>
-                            <span class="cert-tag">AWS</span>
-                            <span class="cert-tag">Architecture</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
+
+                <!-- Certificate Controls -->
+                <div class="course-controls">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <input type="text" id="certSearch" placeholder="🔍 Search certificates..." class="search-input"
+                            onkeyup="handleCertSearch()">
+                        <button class="clear-search-btn" onclick="clearCertSearch()">✕</button>
                     </div>
 
-                    <div class="certificate-card">
-                        <div class="cert-icon">🐳</div>
-                        <h4>Docker Certified Associate</h4>
-                        <p class="issuer">Docker Inc.</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">March 2024</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">March 2026</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">DCA-2024-1908</span>
-                            </div>
+                    <!-- Filters and Sorting -->
+                    <div class="filters-sorting">
+                        <!-- Status Filter -->
+                        <div class="filter-group">
+                            <label for="certStatusFilter">Filter by Status:</label>
+                            <select id="certStatusFilter" class="filter-select" onchange="applyCertFilters()">
+                                <option value="">All Certificates</option>
+                                <option value="Active">Active</option>
+                                <option value="Expired">Expired</option>
+                                <option value="Lifetime">Lifetime</option>
+                            </select>
                         </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">Containerization</span>
-                            <span class="cert-tag">Docker</span>
-                            <span class="cert-tag">DevOps</span>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="certSortBy">Sort by:</label>
+                            <select id="certSortBy" class="filter-select" onchange="applyCertSort()">
+                                <option value="issued">Recently Issued</option>
+                                <option value="alphabetical">A - Z</option>
+                                <option value="issuer">Issuer</option>
+                                <option value="expiry">Expiry Date</option>
+                            </select>
                         </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
+
+                        <!-- Export Button -->
+                        <button class="export-btn" onclick="exportCertsToJSON()">
+                            📥 Export JSON
+                        </button>
                     </div>
 
-                    <div class="certificate-card">
-                        <div class="cert-icon">☸️</div>
-                        <h4>Kubernetes Application Developer (CKAD)</h4>
-                        <p class="issuer">Cloud Native Computing Foundation</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">November 2023</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">November 2026</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">CKAD-2023-9012</span>
-                            </div>
-                        </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">Kubernetes</span>
-                            <span class="cert-tag">Container Orchestration</span>
-                            <span class="cert-tag">Cloud Native</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
+                    <!-- Results Count -->
+                    <div class="results-count">
+                        <span id="certCount">Showing all certificates</span>
                     </div>
+                </div>
 
-                    <div class="certificate-card">
-                        <div class="cert-icon">🔐</div>
-                        <h4>Secure Coding with Java</h4>
-                        <p class="issuer">Oracle University</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">July 2023</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">July 2025</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">SCJ-2023-5678</span>
-                            </div>
-                        </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">Java Security</span>
-                            <span class="cert-tag">Best Practices</span>
-                            <span class="cert-tag">Code Quality</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
-                    </div>
+                <!-- Certificates Grid -->
+                <div class="certificates-grid" id="certificatesContainer">
+                    <!-- Certificates will be dynamically inserted here -->
+                </div>
 
-                    <div class="certificate-card">
-                        <div class="cert-icon">📊</div>
-                        <h4>Data Engineering Essentials</h4>
-                        <p class="issuer">Cloudera</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">May 2023</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">May 2025</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">DEE-2023-3456</span>
-                            </div>
-                        </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">Data Engineering</span>
-                            <span class="cert-tag">ETL</span>
-                            <span class="cert-tag">Big Data</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
+                <!-- Pagination Controls for Certificates -->
+                <div class="pagination-controls">
+                    <button class="pagination-btn prev-btn" onclick="previousCertPage()"
+                        title="Previous page (← arrow key)">← Previous</button>
+                    <div class="page-info">
+                        <span id="certPageNumber">Page 1</span>
                     </div>
+                    <button class="pagination-btn next-btn" onclick="nextCertPage()"
+                        title="Next page (→ arrow key)">Next →</button>
+                </div>
 
-                    <div class="certificate-card">
-                        <div class="cert-icon">⚛️</div>
-                        <h4>React.js Advanced Certificate</h4>
-                        <p class="issuer">Scrimba</p>
-                        <div class="cert-details">
-                            <div class="cert-detail-item">
-                                <span class="label">Issued:</span>
-                                <span class="value">February 2023</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Expires:</span>
-                                <span class="value">Lifetime</span>
-                            </div>
-                            <div class="cert-detail-item">
-                                <span class="label">Credential ID:</span>
-                                <span class="value">RAC-2023-1234</span>
-                            </div>
-                        </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag">React</span>
-                            <span class="cert-tag">Frontend</span>
-                            <span class="cert-tag">JavaScript</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/yuvraj-sharma-684345221/" target="_blank"
-                            class="view-cert-btn">View Credential →</a>
-                    </div>
+                <!-- Keyboard Help -->
+                <div class="keyboard-help">
+                    <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+C to focus
+                        search</p>
                 </div>
             </div>
         </div>
