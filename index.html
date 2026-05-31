@@ -273,22 +273,19 @@
             <p class="section-subtitle">Books, courses, and achievements that shaped my technical journey</p>
 
             <!-- Books Section -->
-            <div class="resources-category">
+            <div class="resources-category" id="booksCategory">
                 <h3 class="category-title">📚 Books & Publications</h3>
                 <p class="category-subtitle">Essential resources that shaped my technical knowledge</p>
 
                 <!-- Book Controls -->
                 <div class="course-controls">
-                    <!-- Search Bar -->
                     <div class="search-container">
                         <input type="text" id="bookSearch" placeholder="🔍 Search books..." class="search-input"
                             onkeyup="handleBookSearch()">
                         <button class="clear-search-btn" onclick="clearBookSearch()">✕</button>
                     </div>
 
-                    <!-- Filters and Sorting -->
                     <div class="filters-sorting">
-                        <!-- Category Filter -->
                         <div class="filter-group">
                             <label for="categoryFilter">Filter by Category:</label>
                             <select id="categoryFilter" class="filter-select" onchange="applyBookFilters()">
@@ -303,7 +300,6 @@
                             </select>
                         </div>
 
-                        <!-- Sort Options -->
                         <div class="filter-group">
                             <label for="bookSortBy">Sort by:</label>
                             <select id="bookSortBy" class="filter-select" onchange="applyBookSort()">
@@ -313,25 +309,22 @@
                             </select>
                         </div>
 
-                        <!-- Export Button -->
                         <button class="export-btn" onclick="exportBooksToJSON()">
                             📥 Export JSON
                         </button>
                     </div>
 
-                    <!-- Results Count -->
                     <div class="results-count">
                         <span id="bookCount">Showing all books</span>
                     </div>
                 </div>
 
-                <!-- Books Grid -->
                 <div class="resources-grid" id="booksContainer">
                     <!-- Books will be dynamically inserted here -->
                 </div>
 
-                <!-- Pagination Controls for Books -->
-                <div class="pagination-controls">
+                <!-- Pagination Controls for Books - UNIQUE ID -->
+                <div class="pagination-controls" id="booksPagination">
                     <button class="pagination-btn prev-btn" onclick="previousBookPage()"
                         title="Previous page (← arrow key)">← Previous</button>
                     <div class="page-info">
@@ -341,30 +334,25 @@
                         title="Next page (→ arrow key)">Next →</button>
                 </div>
 
-                <!-- Keyboard Help -->
                 <div class="keyboard-help">
                     <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+B to focus
                         search</p>
                 </div>
             </div>
 
-            <!-- Udemy Courses Section -->
-            <div class="resources-category">
+            <!-- UDEMY COURSES SECTION -->
+            <div class="resources-category" id="udemyCategory">
                 <h3 class="category-title">🎓 Udemy Courses</h3>
                 <p class="category-subtitle">Professional courses and certifications completed on Udemy</p>
 
-                <!-- Course Controls -->
                 <div class="course-controls">
-                    <!-- Search Bar -->
                     <div class="search-container">
                         <input type="text" id="courseSearch" placeholder="🔍 Search courses..." class="search-input"
                             onkeyup="handleSearch()">
                         <button class="clear-search-btn" onclick="clearSearch()">✕</button>
                     </div>
 
-                    <!-- Filters and Sorting -->
                     <div class="filters-sorting">
-                        <!-- Status Filter -->
                         <div class="filter-group">
                             <label for="statusFilter">Filter by Status:</label>
                             <select id="statusFilter" class="filter-select" onchange="applyFilters()">
@@ -374,7 +362,6 @@
                             </select>
                         </div>
 
-                        <!-- Sort Options -->
                         <div class="filter-group">
                             <label for="sortBy">Sort by:</label>
                             <select id="sortBy" class="filter-select" onchange="applySort()">
@@ -384,25 +371,22 @@
                             </select>
                         </div>
 
-                        <!-- Export Button -->
                         <button class="export-btn" onclick="exportCoursesToJSON()">
                             📥 Export JSON
                         </button>
                     </div>
 
-                    <!-- Results Count -->
                     <div class="results-count">
                         <span id="courseCount">Showing all courses</span>
                     </div>
                 </div>
 
-                <!-- Courses Grid -->
                 <div class="udemy-grid" id="udemyCoursesContainer">
                     <!-- Courses will be dynamically inserted here -->
                 </div>
 
-                <!-- Pagination Controls -->
-                <div class="pagination-controls">
+                <!-- Pagination Controls for Udemy - UNIQUE ID -->
+                <div class="pagination-controls" id="udemyPagination">
                     <button class="pagination-btn prev-btn" onclick="previousPage()"
                         title="Previous page (← arrow key)">← Previous</button>
                     <div class="page-info">
@@ -412,109 +396,31 @@
                         →</button>
                 </div>
 
-                <!-- Keyboard Help -->
                 <div class="keyboard-help">
                     <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+K to focus
                         search</p>
                 </div>
             </div>
 
-            <!-- Competitive Programming Section -->
-            <div class="resources-category">
-                <h3 class="category-title">💻 Competitive Programming</h3>
-                <p class="category-subtitle">Coding practice and problem-solving on leading platforms</p>
-                <div class="competitive-grid">
-                    <!-- HackerRank -->
-                    <div class="competitive-card">
-                        <div class="platform-header hackerrank">
-                            <div class="platform-icon">🏆</div>
-                            <div class="platform-info">
-                                <h4>HackerRank</h4>
-                                <p>uvraj560</p>
-                            </div>
-                        </div>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <div class="stat-value">500+</div>
-                                <div class="stat-label">Problems Solved</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">5⭐</div>
-                                <div class="stat-label">Java</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">4⭐</div>
-                                <div class="stat-label">SQL</div>
-                            </div>
-                        </div>
-                        <div class="skills-section">
-                            <h5>Top Skills</h5>
-                            <div class="skill-badges">
-                                <span class="skill-badge">Java</span>
-                                <span class="skill-badge">SQL</span>
-                                <span class="skill-badge">Algorithms</span>
-                                <span class="skill-badge">Data Structures</span>
-                            </div>
-                        </div>
-                        <a href="https://www.hackerrank.com/profile/uvraj560" target="_blank" class="visit-btn">Visit
-                            Profile →</a>
-                    </div>
-
-                    <!-- LeetCode -->
-                    <div class="competitive-card">
-                        <div class="platform-header leetcode">
-                            <div class="platform-icon">⚡</div>
-                            <div class="platform-info">
-                                <h4>LeetCode</h4>
-                                <p>uvraj560</p>
-                            </div>
-                        </div>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <div class="stat-value">300+</div>
-                                <div class="stat-label">Problems Solved</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">Intermediate</div>
-                                <div class="stat-label">Level</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">Java</div>
-                                <div class="stat-label">Preferred</div>
-                            </div>
-                        </div>
-                        <div class="skills-section">
-                            <h5>Top Topics</h5>
-                            <div class="skill-badges">
-                                <span class="skill-badge">Dynamic Programming</span>
-                                <span class="skill-badge">Trees</span>
-                                <span class="skill-badge">Graphs</span>
-                                <span class="skill-badge">Arrays</span>
-                            </div>
-                        </div>
-                        <a href="https://leetcode.com/u/uvraj560/" target="_blank" class="visit-btn">Visit Profile →</a>
-                    </div>
-                </div>
+            <!-- COMPETITIVE PROGRAMMING SECTION -->
+            <div class="resources-category" id="competitiveCategory">
+                <!-- ... Keep existing code ... -->
             </div>
 
-            <!-- LinkedIn Certificates Section -->
-            <div class="resources-category">
+            <!-- CERTIFICATES SECTION -->
+            <div class="resources-category" id="certificatesCategory">
                 <h3 class="category-title">🎖️ Certificates & Licenses</h3>
                 <p class="category-subtitle">Professional certifications and credentials from LinkedIn and other
                     platforms</p>
 
-                <!-- Certificate Controls -->
                 <div class="course-controls">
-                    <!-- Search Bar -->
                     <div class="search-container">
                         <input type="text" id="certSearch" placeholder="🔍 Search certificates..." class="search-input"
                             onkeyup="handleCertSearch()">
                         <button class="clear-search-btn" onclick="clearCertSearch()">✕</button>
                     </div>
 
-                    <!-- Filters and Sorting -->
                     <div class="filters-sorting">
-                        <!-- Status Filter -->
                         <div class="filter-group">
                             <label for="certStatusFilter">Filter by Status:</label>
                             <select id="certStatusFilter" class="filter-select" onchange="applyCertFilters()">
@@ -525,7 +431,6 @@
                             </select>
                         </div>
 
-                        <!-- Sort Options -->
                         <div class="filter-group">
                             <label for="certSortBy">Sort by:</label>
                             <select id="certSortBy" class="filter-select" onchange="applyCertSort()">
@@ -536,25 +441,22 @@
                             </select>
                         </div>
 
-                        <!-- Export Button -->
                         <button class="export-btn" onclick="exportCertsToJSON()">
                             📥 Export JSON
                         </button>
                     </div>
 
-                    <!-- Results Count -->
                     <div class="results-count">
                         <span id="certCount">Showing all certificates</span>
                     </div>
                 </div>
 
-                <!-- Certificates Grid -->
                 <div class="certificates-grid" id="certificatesContainer">
                     <!-- Certificates will be dynamically inserted here -->
                 </div>
 
-                <!-- Pagination Controls for Certificates -->
-                <div class="pagination-controls">
+                <!-- Pagination Controls for Certificates - UNIQUE ID -->
+                <div class="pagination-controls" id="certsPagination">
                     <button class="pagination-btn prev-btn" onclick="previousCertPage()"
                         title="Previous page (← arrow key)">← Previous</button>
                     <div class="page-info">
@@ -564,12 +466,12 @@
                         title="Next page (→ arrow key)">Next →</button>
                 </div>
 
-                <!-- Keyboard Help -->
                 <div class="keyboard-help">
-                    <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+C to focus
+                    <p>💡 <strong>Keyboard Tips:</strong> Use ← → arrow keys to navigate pages | Press Ctrl+E to focus
                         search</p>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -610,6 +512,9 @@
     </section>
 
     <footer class="footer">
+        <div class="visitor-counter">
+            <p>👥 Visitors: <span id="visitCount">0</span></p>
+        </div>
         <div class="container">
             <p>&copy; 2025 Yuvraj Sharma. Built with ❤️</p>
         </div>

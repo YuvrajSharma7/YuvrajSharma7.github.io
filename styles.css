@@ -214,7 +214,7 @@ body {
 .description {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
+    margin-bottom: 16px;
     line-height: 1.8;
 }
 
@@ -514,7 +514,7 @@ body {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
     position: relative;
     z-index: 2;
@@ -819,7 +819,7 @@ body {
 
 .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 30px;
     position: relative;
     z-index: 2;
@@ -827,7 +827,7 @@ body {
 
 .resource-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 255, 255, 0.98) 100%);
-    padding: 30px;
+    padding: 20px;
     border-radius: 12px;
     text-align: center;
     transition: var(--transition);
@@ -870,8 +870,8 @@ body {
 }
 
 .resource-icon {
-    font-size: 56px;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 12px;
     display: inline-block;
     animation: bounce 2s ease-in-out infinite;
     position: relative;
@@ -2258,12 +2258,12 @@ mark {
 
 .book-category {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(83, 52, 131, 0.2));
-    color: var(--secondary-color);
+    color: var(--gradient-2);
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--gradient-2);
 }
 
 .book-year {
@@ -2286,7 +2286,7 @@ mark {
 
 .topic-tag {
     background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(39, 174, 96, 0.15));
-    color: #2ecc71;
+    color: #d438e3;
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 11px;
@@ -2381,14 +2381,6 @@ mark {
     z-index: 1;
 }
 
-.resource-card .description {
-    color: var(--text-light);
-    font-size: 14px;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-}
-
 .resource-card .book-meta,
 .resource-card .book-topics,
 .resource-card .book-rating {
@@ -2442,10 +2434,6 @@ mark {
     }
 
     .resource-card .author {
-        font-size: 13px;
-    }
-
-    .resource-card .description {
         font-size: 13px;
     }
 
@@ -2798,4 +2786,132 @@ mark {
         font-size: 13px;
         padding: 10px 16px;
     }
+}
+
+/* ==================== PAGINATION BUTTON STATES ====================*/
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+    pointer-events: none;
+}
+
+.pagination-btn:disabled:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.pagination-btn:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 212, 255, 0.3);
+}
+
+.pagination-btn:not(:disabled):active {
+    transform: translateY(-1px);
+}
+
+/* ==================== PAGINATION CONTAINER ====================*/
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+}
+
+.page-info {
+    min-width: 150px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--secondary-color);
+}
+
+#pageNumber,
+#bookPageNumber,
+#certPageNumber {
+    display: block;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+/* ==================== RESPONSIVE PAGINATION ====================*/
+@media (max-width: 768px) {
+    .pagination-controls {
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    .pagination-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        flex: 1;
+        min-width: 90px;
+    }
+
+    .page-info {
+        min-width: 120px;
+        font-size: 13px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination-controls {
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .pagination-btn {
+        padding: 9px 16px;
+        font-size: 12px;
+        flex: 1;
+        min-width: 70px;
+    }
+
+    .page-info {
+        min-width: 100px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    #pageNumber,
+    #bookPageNumber,
+    #certPageNumber {
+        font-size: 12px;
+    }
+}
+
+/* ==================== VISITOR COUNTER ==================== */
+.visitor-counter {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 212, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.visitor-counter p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#visitCount {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0 8px;
+    background: rgba(0, 212, 255, 0.2);
+    border-radius: 4px;
 }

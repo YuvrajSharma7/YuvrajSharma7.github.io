@@ -162,301 +162,6 @@ const booksData = [
     }
 ];
 
-// ==================== BOOKS PAGINATION VARIABLES ====================
-let currentBookPage = 1;
-const booksPerPage = 3;
-let filteredBooks = [...booksData];
-let currentBookSortBy = 'alphabetical';
-let currentCategoryFilter = '';
-let currentBookSearchTerm = '';
-
-// ==================== RENDER BOOKS FUNCTION ====================
-function renderBooks(page) {
-    const container = document.getElementById('booksContainer');
-    container.innerHTML = '';
-
-    // Calculate start and end index
-    const startIndex = (page - 1) * booksPerPage;
-    const endIndex = startIndex + booksPerPage;
-    const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
-
-    // Check if no books found
-    if (booksToDisplay.length === 0) {
-        container.innerHTML = `
-            <div class="no-courses-message" style="grid-column: 1 / -1;">
-                <p>😔 No books found matching your criteria.</p>
-                <button onclick="resetBookFilters()" class="reset-filters-btn">Reset Filters</button>
-            </div>
-        `;
-        updateBookPageInfo();
-        return;
-    }
-
-    // Create book cards using for loop
-    for (let i = 0; i < booksToDisplay.length; i++) {
-        const book = booksToDisplay[i];
-
-        // Create book card HTML
-        const bookCard = document.createElement('div');
-        bookCard.className = 'resource-card';
-        bookCard.setAttribute('data-book-id', book.id);
-        bookCard.innerHTML = `
-            <div class="resource-icon">📘</div>
-            <h4>${highlightBookSearchTerm(book.title)}</h4>
-            <p class="author">${highlightBookSearchTerm(book.author)}</p>
-            <div class="book-meta">
-                <span class="book-category">${book.category}</span>
-                <span class="book-year">${book.year}</span>
-            </div>
-            <p class="description">${highlightBookSearchTerm(book.description)}</p>
-            <div class="book-topics">
-                ${book.keyTopics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
-            </div>
-            <div class="book-rating">
-                ${'⭐'.repeat(book.rating)} (${book.rating}/5)
-            </div>
-        `;
-
-        container.appendChild(bookCard);
-    }
-
-    // Update page info
-    updateBookPageInfo();
-
-    // Add animation
-    const cards = document.querySelectorAll('.resource-card');
-    cards.forEach((card, index) => {
-        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
-    });
-}
-
-// ==================== HIGHLIGHT SEARCH TERM IN BOOKS ====================
-function highlightBookSearchTerm(text) {
-    if (!currentBookSearchTerm) return text;
-
-    const regex = new RegExp(`(${currentBookSearchTerm})`, 'gi');
-    return text.replace(regex, '<mark>\$1</mark>');
-}
-
-// ==================== UPDATE BOOK PAGE INFO ====================
-function updateBookPageInfo() {
-    const pageNumber = document.getElementById('bookPageNumber');
-    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-
-    pageNumber.textContent = `Page ${currentBookPage} of ${totalPages || 1}`;
-
-    // Update button states
-    const prevBtn = document.querySelectorAll('.prev-btn')[1];
-    const nextBtn = document.querySelectorAll('.next-btn')[1];
-
-    if (prevBtn && nextBtn) {
-        prevBtn.disabled = currentBookPage === 1 || filteredBooks.length === 0;
-        nextBtn.disabled = currentBookPage === totalPages || filteredBooks.length === 0;
-    }
-
-    // Update results count
-    updateBookResultsCount();
-}
-
-// ==================== UPDATE BOOK RESULTS COUNT ====================
-function updateBookResultsCount() {
-    const bookCount = document.getElementById('bookCount');
-    const total = filteredBooks.length;
-
-    if (currentBookSearchTerm || currentCategoryFilter) {
-        bookCount.textContent = `Found ${total} book${total !== 1 ? 's' : ''}`;
-    } else {
-        bookCount.textContent = `Showing all ${total} books`;
-    }
-}
-
-// ==================== SEARCH BOOKS FUNCTION ====================
-function handleBookSearch() {
-    const searchInput = document.getElementById('bookSearch');
-    currentBookSearchTerm = searchInput.value.toLowerCase().trim();
-    currentBookPage = 1;
-
-    applyBookFilters();
-}
-
-// ==================== CLEAR BOOK SEARCH ====================
-function clearBookSearch() {
-    document.getElementById('bookSearch').value = '';
-    currentBookSearchTerm = '';
-    currentBookPage = 1;
-    applyBookFilters();
-}
-
-// ==================== APPLY BOOK FILTERS ====================
-function applyBookFilters() {
-    // Get current filter values
-    currentCategoryFilter = document.getElementById('categoryFilter').value;
-
-    // Filter books
-    filteredBooks = booksData.filter(book => {
-        // Search filter
-        const matchesSearch =
-            book.title.toLowerCase().includes(currentBookSearchTerm) ||
-            book.author.toLowerCase().includes(currentBookSearchTerm) ||
-            book.description.toLowerCase().includes(currentBookSearchTerm) ||
-            book.keyTopics.some(topic => topic.toLowerCase().includes(currentBookSearchTerm));
-
-        // Category filter
-        const matchesCategory = currentCategoryFilter === '' || book.category === currentCategoryFilter;
-
-        return matchesSearch && matchesCategory;
-    });
-
-    // Apply current sort
-    applyBookSort();
-}
-
-// ==================== APPLY BOOK SORTING ====================
-function applyBookSort() {
-    currentBookSortBy = document.getElementById('bookSortBy').value;
-
-    switch (currentBookSortBy) {
-        case 'author':
-            filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
-            break;
-        case 'category':
-            filteredBooks.sort((a, b) => {
-                if (a.category === b.category) {
-                    return a.title.localeCompare(b.title);
-                }
-                return a.category.localeCompare(b.category);
-            });
-            break;
-        case 'alphabetical':
-        default:
-            filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-    }
-
-    currentBookPage = 1;
-    renderBooks(currentBookPage);
-}
-
-// ==================== RESET BOOK FILTERS ====================
-function resetBookFilters() {
-    document.getElementById('bookSearch').value = '';
-    document.getElementById('categoryFilter').value = '';
-    document.getElementById('bookSortBy').value = 'alphabetical';
-
-    currentBookSearchTerm = '';
-    currentCategoryFilter = '';
-    currentBookSortBy = 'alphabetical';
-    currentBookPage = 1;
-
-    filteredBooks = [...booksData];
-    applyBookSort();
-}
-
-// ==================== BOOK PAGINATION NAVIGATION ====================
-function nextBookPage() {
-    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-
-    if (currentBookPage < totalPages) {
-        currentBookPage++;
-        renderBooks(currentBookPage);
-        scrollToBookSection();
-    }
-}
-
-function previousBookPage() {
-    if (currentBookPage > 1) {
-        currentBookPage--;
-        renderBooks(currentBookPage);
-        scrollToBookSection();
-    }
-}
-
-// ==================== SCROLL TO BOOK SECTION ====================
-function scrollToBookSection() {
-    const booksSection = document.querySelector('.resources-category');
-    if (booksSection) {
-        booksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-// ==================== EXPORT BOOKS TO JSON ====================
-function exportBooksToJSON() {
-    const dataToExport = {
-        exportDate: new Date().toISOString(),
-        totalBooks: booksData.length,
-        categories: [...new Set(booksData.map(b => b.category))],
-        books: booksData
-    };
-
-    // Convert to JSON string
-    const jsonString = JSON.stringify(dataToExport, null, 2);
-
-    // Create blob
-    const blob = new Blob([jsonString], { type: 'application/json' });
-
-    // Create download link
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `yuvraj-books-${new Date().toISOString().split('T')[0]}.json`;
-
-    // Trigger download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
-    // Show confirmation message
-    showBookNotification('✅ Books exported successfully as JSON!');
-}
-
-// ==================== SHOW BOOK NOTIFICATION ====================
-function showBookNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// ==================== KEYBOARD NAVIGATION FOR BOOKS ====================
-document.addEventListener('keydown', (e) => {
-    // Check if we're in the books section by looking at focus
-    const bookSearch = document.getElementById('bookSearch');
-    const courseSearch = document.getElementById('courseSearch');
-
-    // Only apply book navigation if book search is visible
-    if (bookSearch && bookSearch.offsetParent !== null) {
-        // Ctrl+B to focus book search
-        if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
-            e.preventDefault();
-            bookSearch.focus();
-        }
-    }
-});
-
-// ==================== INITIALIZE ALL SECTIONS ON PAGE LOAD ====================
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Books
-    renderBooks(1);
-
-    // Initialize Udemy courses
-    renderUdemyCourses(1);
-
-    // Initialize Certificates
-    renderCertificates(1);
-});
-
 // ==================== UDEMY COURSES DATA ====================
 const udemyCoursesData = [
     {
@@ -612,392 +317,6 @@ const udemyCoursesData = [
         dateCompleted: "2025-04-19"
     }
 ];
-
-// ==================== PAGINATION AND FILTERING VARIABLES ====================
-let currentPage = 1;
-const coursesPerPage = 2;
-let filteredCourses = [...udemyCoursesData];
-let currentSortBy = 'recent';
-let currentStatusFilter = '';
-let currentSearchTerm = '';
-
-// ==================== RENDER COURSES FUNCTION ====================
-function renderUdemyCourses(page) {
-    const container = document.getElementById('udemyCoursesContainer');
-    container.innerHTML = '';
-
-    // Calculate start and end index
-    const startIndex = (page - 1) * coursesPerPage;
-    const endIndex = startIndex + coursesPerPage;
-    const coursesToDisplay = filteredCourses.slice(startIndex, endIndex);
-
-    // Check if no courses found
-    if (coursesToDisplay.length === 0) {
-        container.innerHTML = `
-            <div class="no-courses-message">
-                <p>😔 No courses found matching your criteria.</p>
-                <button onclick="resetFilters()" class="reset-filters-btn">Reset Filters</button>
-            </div>
-        `;
-        updatePageInfo();
-        return;
-    }
-
-    // Create course cards using for loop
-    for (let i = 0; i < coursesToDisplay.length; i++) {
-        const course = coursesToDisplay[i];
-
-        // Create status badge color
-        const statusClass = course.status === 'Completed' ? 'status-completed' : 'status-inprogress';
-
-        // Create course card HTML
-        const courseCard = document.createElement('div');
-        courseCard.className = 'udemy-card';
-        courseCard.setAttribute('data-course-id', course.id);
-        courseCard.innerHTML = `
-            <div class="udemy-logo">🎬</div>
-            <h4>${highlightSearchTerm(course.title)}</h4>
-            <p class="instructor ${statusClass}">${course.status}</p>
-            <p class="course-description">${highlightSearchTerm(course.description)}</p>
-            <div class="course-tags">
-                ${course.tags.map(tag => `<span class="course-tag">${tag}</span>`).join('')}
-            </div>
-        `;
-
-        container.appendChild(courseCard);
-    }
-
-    // Update page info
-    updatePageInfo();
-
-    // Add animation
-    const cards = document.querySelectorAll('.udemy-card');
-    cards.forEach((card, index) => {
-        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
-    });
-}
-
-// ==================== HIGHLIGHT SEARCH TERM ====================
-function highlightSearchTerm(text) {
-    if (!currentSearchTerm) return text;
-
-    const regex = new RegExp(`(${currentSearchTerm})`, 'gi');
-    return text.replace(regex, '<mark>\$1</mark>');
-}
-
-// ==================== UPDATE PAGE INFO ====================
-function updatePageInfo() {
-    const pageNumber = document.getElementById('pageNumber');
-    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
-
-    pageNumber.textContent = `Page ${currentPage} of ${totalPages || 1}`;
-
-    // Update button states
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    prevBtn.disabled = currentPage === 1 || filteredCourses.length === 0;
-    nextBtn.disabled = currentPage === totalPages || filteredCourses.length === 0;
-
-    // Update results count
-    updateResultsCount();
-}
-
-// ==================== UPDATE RESULTS COUNT ====================
-function updateResultsCount() {
-    const courseCount = document.getElementById('courseCount');
-    const total = filteredCourses.length;
-    const completed = filteredCourses.filter(c => c.status === 'Completed').length;
-    const inProgress = filteredCourses.filter(c => c.status === 'In Progress').length;
-
-    if (currentSearchTerm || currentStatusFilter) {
-        courseCount.textContent = `Found ${total} course${total !== 1 ? 's' : ''} (${completed} Completed, ${inProgress} In Progress)`;
-    } else {
-        courseCount.textContent = `Showing all ${total} courses (${completed} Completed, ${inProgress} In Progress)`;
-    }
-}
-
-// ==================== SEARCH FUNCTION ====================
-function handleSearch() {
-    const searchInput = document.getElementById('courseSearch');
-    currentSearchTerm = searchInput.value.toLowerCase().trim();
-    currentPage = 1;
-
-    applyFilters();
-}
-
-// ==================== CLEAR SEARCH ====================
-function clearSearch() {
-    document.getElementById('courseSearch').value = '';
-    currentSearchTerm = '';
-    currentPage = 1;
-    applyFilters();
-}
-
-// ==================== APPLY FILTERS ====================
-function applyFilters() {
-    // Get current filter values
-    currentStatusFilter = document.getElementById('statusFilter').value;
-
-    // Filter courses
-    filteredCourses = udemyCoursesData.filter(course => {
-        // Search filter
-        const matchesSearch =
-            course.title.toLowerCase().includes(currentSearchTerm) ||
-            course.description.toLowerCase().includes(currentSearchTerm) ||
-            course.tags.some(tag => tag.toLowerCase().includes(currentSearchTerm));
-
-        // Status filter
-        const matchesStatus = currentStatusFilter === '' || course.status === currentStatusFilter;
-
-        return matchesSearch && matchesStatus;
-    });
-
-    // Apply current sort
-    applySort();
-}
-
-// ==================== APPLY SORTING ====================
-function applySort() {
-    currentSortBy = document.getElementById('sortBy').value;
-
-    switch (currentSortBy) {
-        case 'alphabetical':
-            filteredCourses.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        case 'status':
-            filteredCourses.sort((a, b) => {
-                if (a.status === b.status) {
-                    return a.title.localeCompare(b.title);
-                }
-                return a.status === 'Completed' ? -1 : 1;
-            });
-            break;
-        case 'recent':
-        default:
-            filteredCourses.sort((a, b) => {
-                const dateA = new Date(a.dateCompleted || '9999-12-31');
-                const dateB = new Date(b.dateCompleted || '9999-12-31');
-                return dateB - dateA;
-            });
-            break;
-    }
-
-    currentPage = 1;
-    renderUdemyCourses(currentPage);
-}
-
-// ==================== RESET FILTERS ====================
-function resetFilters() {
-    document.getElementById('courseSearch').value = '';
-    document.getElementById('statusFilter').value = '';
-    document.getElementById('sortBy').value = 'recent';
-
-    currentSearchTerm = '';
-    currentStatusFilter = '';
-    currentSortBy = 'recent';
-    currentPage = 1;
-
-    filteredCourses = [...udemyCoursesData];
-    applySort();
-}
-
-// ==================== PAGINATION NAVIGATION ====================
-function nextPage() {
-    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
-
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderUdemyCourses(currentPage);
-        scrollToSection();
-    }
-}
-
-function previousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        renderUdemyCourses(currentPage);
-        scrollToSection();
-    }
-}
-
-// ==================== SCROLL TO SECTION ====================
-function scrollToSection() {
-    const coursesSection = document.querySelector('.resources-category');
-    if (coursesSection) {
-        coursesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-// ==================== KEYBOARD NAVIGATION ====================
-document.addEventListener('keydown', (e) => {
-    // Arrow keys for pagination
-    if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextPage();
-    } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        previousPage();
-    }
-
-    // Ctrl+K to focus search
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        document.getElementById('courseSearch').focus();
-    }
-
-    // Escape to clear search
-    if (e.key === 'Escape') {
-        clearSearch();
-    }
-});
-
-// ==================== EXPORT TO JSON ====================
-function exportCoursesToJSON() {
-    const dataToExport = {
-        exportDate: new Date().toISOString(),
-        totalCourses: udemyCoursesData.length,
-        completedCourses: udemyCoursesData.filter(c => c.status === 'Completed').length,
-        inProgressCourses: udemyCoursesData.filter(c => c.status === 'In Progress').length,
-        courses: udemyCoursesData
-    };
-
-    // Convert to JSON string
-    const jsonString = JSON.stringify(dataToExport, null, 2);
-
-    // Create blob
-    const blob = new Blob([jsonString], { type: 'application/json' });
-
-    // Create download link
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `yuvraj-udemy-courses-${new Date().toISOString().split('T')[0]}.json`;
-
-    // Trigger download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
-    // Show confirmation message
-    showNotification('✅ Courses exported successfully as JSON!');
-}
-
-// ==================== SHOW NOTIFICATION ====================
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// ==================== IMPORT FROM JSON ====================
-function importCoursesFromJSON(file) {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-        try {
-            const data = JSON.parse(e.target.result);
-            if (data.courses && Array.isArray(data.courses)) {
-                udemyCoursesData.length = 0;
-                udemyCoursesData.push(...data.courses);
-                filteredCourses = [...udemyCoursesData];
-                currentPage = 1;
-                renderUdemyCourses(1);
-                showNotification('✅ Courses imported successfully!');
-            } else {
-                showNotification('❌ Invalid JSON format');
-            }
-        } catch (error) {
-            showNotification('❌ Error importing JSON: ' + error.message);
-        }
-    };
-
-    reader.readAsText(file);
-}
-
-
-// ==================== SMOOTH SCROLLING FOR NAVIGATION LINKS ====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// ==================== ADD ACTIVE STATE TO NAVBAR LINKS ON SCROLL ====================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--secondary-color)';
-            link.style.fontWeight = '700';
-        }
-    });
-});
-
-// ==================== ANIMATE ELEMENTS ON SCROLL ====================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.timeline-item, .skill-category, .resource-card, .education-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// ==================== PARALLAX EFFECT ON HERO SECTION ====================
-window.addEventListener('scroll', () => {
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        const scrollPosition = window.scrollY;
-        heroSection.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
-    }
-});
 
 // ==================== CERTIFICATES DATA ====================
 const certificatesData = [
@@ -1195,13 +514,450 @@ const certificatesData = [
     }
 ];
 
+// ==================== BOOKS PAGINATION VARIABLES ====================
+let currentBookPage = 1;
+const booksPerPage = 2;
+let filteredBooks = [...booksData];
+let currentBookSortBy = 'alphabetical';
+let currentCategoryFilter = '';
+let currentBookSearchTerm = '';
+
+// ==================== UDEMY PAGINATION VARIABLES ====================
+let currentPage = 1;
+const coursesPerPage = 2;
+let filteredCourses = [...udemyCoursesData];
+let currentSortBy = 'recent';
+let currentStatusFilter = '';
+let currentSearchTerm = '';
+
 // ==================== CERTIFICATES PAGINATION VARIABLES ====================
 let currentCertPage = 1;
-const certsPerPage = 4;
+const certsPerPage = 2;
 let filteredCerts = [...certificatesData];
 let currentCertSortBy = 'issued';
 let currentCertStatusFilter = '';
 let currentCertSearchTerm = '';
+
+// ==================== RENDER BOOKS FUNCTION ====================
+function renderBooks(page) {
+    const container = document.getElementById('booksContainer');
+    container.innerHTML = '';
+
+    const startIndex = (page - 1) * booksPerPage;
+    const endIndex = startIndex + booksPerPage;
+    const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
+
+    if (booksToDisplay.length === 0) {
+        container.innerHTML = `
+            <div class="no-courses-message" style="grid-column: 1 / -1;">
+                <p>😔 No books found matching your criteria.</p>
+                <button onclick="resetBookFilters()" class="reset-filters-btn">Reset Filters</button>
+            </div>
+        `;
+        updateBookPageInfo();
+        return;
+    }
+
+    for (let i = 0; i < booksToDisplay.length; i++) {
+        const book = booksToDisplay[i];
+
+        const bookCard = document.createElement('div');
+        bookCard.className = 'resource-card';
+        bookCard.setAttribute('data-book-id', book.id);
+        bookCard.innerHTML = `
+            <div class="resource-icon">📘</div>
+            <h4>${highlightBookSearchTerm(book.title)}</h4>
+            <p class="author">${highlightBookSearchTerm(book.author)}</p>
+            <div class="book-meta">
+                <span class="book-category">${book.category}</span>
+                <span class="book-year">${book.year}</span>
+            </div>
+            <p class="description">${highlightBookSearchTerm(book.description)}</p>
+            <div class="book-topics">
+                ${book.keyTopics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+            </div>
+            <div class="book-rating">
+                ${'⭐'.repeat(book.rating)} (${book.rating}/5)
+            </div>
+        `;
+
+        container.appendChild(bookCard);
+    }
+
+    updateBookPageInfo();
+
+    const cards = document.querySelectorAll('[data-book-id]');
+    cards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+    });
+}
+
+function highlightBookSearchTerm(text) {
+    if (!currentBookSearchTerm) return text;
+    const regex = new RegExp(`(${currentBookSearchTerm})`, 'gi');
+    return text.replace(regex, '<mark>\$1</mark>');
+}
+
+function updateBookPageInfo() {
+    const pageNumber = document.getElementById('bookPageNumber');
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+
+    pageNumber.textContent = `Page ${currentBookPage} of ${totalPages || 1}`;
+
+    const pagination = document.getElementById('booksPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentBookPage === 1 || filteredBooks.length === 0;
+            nextBtn.disabled = currentBookPage === totalPages || filteredBooks.length === 0;
+        }
+    }
+
+    updateBookResultsCount();
+}
+
+function updateBookResultsCount() {
+    const bookCount = document.getElementById('bookCount');
+    const total = filteredBooks.length;
+
+    if (currentBookSearchTerm || currentCategoryFilter) {
+        bookCount.textContent = `Found ${total} book${total !== 1 ? 's' : ''}`;
+    } else {
+        bookCount.textContent = `Showing all ${total} books`;
+    }
+}
+
+function handleBookSearch() {
+    const searchInput = document.getElementById('bookSearch');
+    currentBookSearchTerm = searchInput.value.toLowerCase().trim();
+    currentBookPage = 1;
+    applyBookFilters();
+}
+
+function clearBookSearch() {
+    document.getElementById('bookSearch').value = '';
+    currentBookSearchTerm = '';
+    currentBookPage = 1;
+    applyBookFilters();
+}
+
+function applyBookFilters() {
+    currentCategoryFilter = document.getElementById('categoryFilter').value;
+
+    filteredBooks = booksData.filter(book => {
+        const matchesSearch =
+            book.title.toLowerCase().includes(currentBookSearchTerm) ||
+            book.author.toLowerCase().includes(currentBookSearchTerm) ||
+            book.description.toLowerCase().includes(currentBookSearchTerm) ||
+            book.keyTopics.some(topic => topic.toLowerCase().includes(currentBookSearchTerm));
+
+        const matchesCategory = currentCategoryFilter === '' || book.category === currentCategoryFilter;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    applyBookSort();
+}
+
+function applyBookSort() {
+    currentBookSortBy = document.getElementById('bookSortBy').value;
+
+    switch (currentBookSortBy) {
+        case 'author':
+            filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
+            break;
+        case 'category':
+            filteredBooks.sort((a, b) => {
+                if (a.category === b.category) {
+                    return a.title.localeCompare(b.title);
+                }
+                return a.category.localeCompare(b.category);
+            });
+            break;
+        case 'alphabetical':
+        default:
+            filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+    }
+
+    currentBookPage = 1;
+    renderBooks(currentBookPage);
+}
+
+function resetBookFilters() {
+    document.getElementById('bookSearch').value = '';
+    document.getElementById('categoryFilter').value = '';
+    document.getElementById('bookSortBy').value = 'alphabetical';
+
+    currentBookSearchTerm = '';
+    currentCategoryFilter = '';
+    currentBookSortBy = 'alphabetical';
+    currentBookPage = 1;
+
+    filteredBooks = [...booksData];
+    applyBookSort();
+}
+
+// ==================== BOOKS PAGINATION NAVIGATION ====================
+function nextBookPage() {
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    if (currentBookPage < totalPages) {
+        currentBookPage++;
+        renderBooks(currentBookPage);
+        scrollToBookSection();
+    }
+}
+
+function previousBookPage() {
+    if (currentBookPage > 1) {
+        currentBookPage--;
+        renderBooks(currentBookPage);
+        scrollToBookSection();
+    }
+}
+
+function scrollToBookSection() {
+    const booksSection = document.getElementById('booksCategory');
+    if (booksSection) {
+        booksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function exportBooksToJSON() {
+    const dataToExport = {
+        exportDate: new Date().toISOString(),
+        totalBooks: booksData.length,
+        categories: [...new Set(booksData.map(b => b.category))],
+        books: booksData
+    };
+
+    const jsonString = JSON.stringify(dataToExport, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `yuvraj-books-${new Date().toISOString().split('T')[0]}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showNotification('✅ Books exported successfully as JSON!');
+}
+
+// ==================== RENDER UDEMY COURSES FUNCTION ====================
+function renderUdemyCourses(page) {
+    const container = document.getElementById('udemyCoursesContainer');
+    container.innerHTML = '';
+
+    const startIndex = (page - 1) * coursesPerPage;
+    const endIndex = startIndex + coursesPerPage;
+    const coursesToDisplay = filteredCourses.slice(startIndex, endIndex);
+
+    if (coursesToDisplay.length === 0) {
+        container.innerHTML = `
+            <div class="no-courses-message">
+                <p>😔 No courses found matching your criteria.</p>
+                <button onclick="resetFilters()" class="reset-filters-btn">Reset Filters</button>
+            </div>
+        `;
+        updatePageInfo();
+        return;
+    }
+
+    for (let i = 0; i < coursesToDisplay.length; i++) {
+        const course = coursesToDisplay[i];
+        const statusClass = course.status === 'Completed' ? 'status-completed' : 'status-inprogress';
+
+        const courseCard = document.createElement('div');
+        courseCard.className = 'udemy-card';
+        courseCard.setAttribute('data-course-id', course.id);
+        courseCard.innerHTML = `
+            <div class="udemy-logo">🎬</div>
+            <h4>${highlightSearchTerm(course.title)}</h4>
+            <p class="instructor ${statusClass}">${course.status}</p>
+            <p class="course-description">${highlightSearchTerm(course.description)}</p>
+            <div class="course-tags">
+                ${course.tags.map(tag => `<span class="course-tag">${tag}</span>`).join('')}
+            </div>
+        `;
+
+        container.appendChild(courseCard);
+    }
+
+    updatePageInfo();
+
+    const cards = document.querySelectorAll('[data-course-id]');
+    cards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+    });
+}
+
+function highlightSearchTerm(text) {
+    if (!currentSearchTerm) return text;
+    const regex = new RegExp(`(${currentSearchTerm})`, 'gi');
+    return text.replace(regex, '<mark>\$1</mark>');
+}
+
+function updatePageInfo() {
+    const pageNumber = document.getElementById('pageNumber');
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+
+    pageNumber.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+
+    const pagination = document.getElementById('udemyPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentPage === 1 || filteredCourses.length === 0;
+            nextBtn.disabled = currentPage === totalPages || filteredCourses.length === 0;
+        }
+    }
+
+    updateResultsCount();
+}
+
+function updateResultsCount() {
+    const courseCount = document.getElementById('courseCount');
+    const total = filteredCourses.length;
+    const completed = filteredCourses.filter(c => c.status === 'Completed').length;
+    const inProgress = filteredCourses.filter(c => c.status === 'In Progress').length;
+
+    if (currentSearchTerm || currentStatusFilter) {
+        courseCount.textContent = `Found ${total} course${total !== 1 ? 's' : ''} (${completed} Completed, ${inProgress} In Progress)`;
+    } else {
+        courseCount.textContent = `Showing all ${total} courses (${completed} Completed, ${inProgress} In Progress)`;
+    }
+}
+
+function handleSearch() {
+    const searchInput = document.getElementById('courseSearch');
+    currentSearchTerm = searchInput.value.toLowerCase().trim();
+    currentPage = 1;
+    applyFilters();
+}
+
+function clearSearch() {
+    document.getElementById('courseSearch').value = '';
+    currentSearchTerm = '';
+    currentPage = 1;
+    applyFilters();
+}
+
+function applyFilters() {
+    currentStatusFilter = document.getElementById('statusFilter').value;
+
+    filteredCourses = udemyCoursesData.filter(course => {
+        const matchesSearch =
+            course.title.toLowerCase().includes(currentSearchTerm) ||
+            course.description.toLowerCase().includes(currentSearchTerm) ||
+            course.tags.some(tag => tag.toLowerCase().includes(currentSearchTerm));
+
+        const matchesStatus = currentStatusFilter === '' || course.status === currentStatusFilter;
+
+        return matchesSearch && matchesStatus;
+    });
+
+    applySort();
+}
+
+function applySort() {
+    currentSortBy = document.getElementById('sortBy').value;
+
+    switch (currentSortBy) {
+        case 'alphabetical':
+            filteredCourses.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'status':
+            filteredCourses.sort((a, b) => {
+                if (a.status === b.status) {
+                    return a.title.localeCompare(b.title);
+                }
+                return a.status === 'Completed' ? -1 : 1;
+            });
+            break;
+        case 'recent':
+        default:
+            filteredCourses.sort((a, b) => {
+                const dateA = new Date(a.dateCompleted || '9999-12-31');
+                const dateB = new Date(b.dateCompleted || '9999-12-31');
+                return dateB - dateA;
+            });
+            break;
+    }
+
+    currentPage = 1;
+    renderUdemyCourses(currentPage);
+}
+
+function resetFilters() {
+    document.getElementById('courseSearch').value = '';
+    document.getElementById('statusFilter').value = '';
+    document.getElementById('sortBy').value = 'recent';
+
+    currentSearchTerm = '';
+    currentStatusFilter = '';
+    currentSortBy = 'recent';
+    currentPage = 1;
+
+    filteredCourses = [...udemyCoursesData];
+    applySort();
+}
+
+// ==================== UDEMY PAGINATION NAVIGATION ====================
+function nextPage() {
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderUdemyCourses(currentPage);
+        scrollToUdemySection();
+    }
+}
+
+function previousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderUdemyCourses(currentPage);
+        scrollToUdemySection();
+    }
+}
+
+function scrollToUdemySection() {
+    const udemySection = document.getElementById('udemyCategory');
+    if (udemySection) {
+        udemySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function exportCoursesToJSON() {
+    const dataToExport = {
+        exportDate: new Date().toISOString(),
+        totalCourses: udemyCoursesData.length,
+        completedCourses: udemyCoursesData.filter(c => c.status === 'Completed').length,
+        inProgressCourses: udemyCoursesData.filter(c => c.status === 'In Progress').length,
+        courses: udemyCoursesData
+    };
+
+    const jsonString = JSON.stringify(dataToExport, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `yuvraj-udemy-courses-${new Date().toISOString().split('T')[0]}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showNotification('✅ Courses exported successfully as JSON!');
+}
 
 // ==================== RENDER CERTIFICATES FUNCTION ====================
 function renderCertificates(page) {
@@ -1226,12 +982,10 @@ function renderCertificates(page) {
     for (let i = 0; i < certsToDisplay.length; i++) {
         const cert = certsToDisplay[i];
 
-        // Determine status color
         let statusColor = 'status-active';
         if (cert.status === 'Expired') statusColor = 'status-expired';
         if (cert.status === 'Lifetime') statusColor = 'status-lifetime';
 
-        // Format dates
         const issuedDate = new Date(cert.issuedDate).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
@@ -1246,7 +1000,6 @@ function renderCertificates(page) {
             })
             : 'Lifetime';
 
-        // Check if expiring soon (within 30 days)
         let expiringSoon = false;
         if (cert.expiryDate) {
             const daysUntilExpiry = Math.floor((new Date(cert.expiryDate) - new Date()) / (1000 * 60 * 60 * 24));
@@ -1294,32 +1047,32 @@ function renderCertificates(page) {
     });
 }
 
-// ==================== HIGHLIGHT SEARCH TERM IN CERTIFICATES ====================
 function highlightCertSearchTerm(text) {
     if (!currentCertSearchTerm) return text;
     const regex = new RegExp(`(${currentCertSearchTerm})`, 'gi');
     return text.replace(regex, '<mark>\$1</mark>');
 }
 
-// ==================== UPDATE CERTIFICATE PAGE INFO ====================
 function updateCertPageInfo() {
     const pageNumber = document.getElementById('certPageNumber');
     const totalPages = Math.ceil(filteredCerts.length / certsPerPage);
 
     pageNumber.textContent = `Page ${currentCertPage} of ${totalPages || 1}`;
 
-    const allPrevBtns = document.querySelectorAll('.prev-btn');
-    const allNextBtns = document.querySelectorAll('.next-btn');
+    const pagination = document.getElementById('certsPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
 
-    if (allPrevBtns.length > 2 && allNextBtns.length > 2) {
-        allPrevBtns[2].disabled = currentCertPage === 1 || filteredCerts.length === 0;
-        allNextBtns[2].disabled = currentCertPage === totalPages || filteredCerts.length === 0;
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentCertPage === 1 || filteredCerts.length === 0;
+            nextBtn.disabled = currentCertPage === totalPages || filteredCerts.length === 0;
+        }
     }
 
     updateCertResultsCount();
 }
 
-// ==================== UPDATE CERTIFICATE RESULTS COUNT ====================
 function updateCertResultsCount() {
     const certCount = document.getElementById('certCount');
     const total = filteredCerts.length;
@@ -1334,7 +1087,6 @@ function updateCertResultsCount() {
     }
 }
 
-// ==================== SEARCH CERTIFICATES FUNCTION ====================
 function handleCertSearch() {
     const searchInput = document.getElementById('certSearch');
     currentCertSearchTerm = searchInput.value.toLowerCase().trim();
@@ -1342,7 +1094,6 @@ function handleCertSearch() {
     applyCertFilters();
 }
 
-// ==================== CLEAR CERTIFICATE SEARCH ====================
 function clearCertSearch() {
     document.getElementById('certSearch').value = '';
     currentCertSearchTerm = '';
@@ -1350,7 +1101,6 @@ function clearCertSearch() {
     applyCertFilters();
 }
 
-// ==================== APPLY CERTIFICATE FILTERS ====================
 function applyCertFilters() {
     currentCertStatusFilter = document.getElementById('certStatusFilter').value;
 
@@ -1369,7 +1119,6 @@ function applyCertFilters() {
     applyCertSort();
 }
 
-// ==================== APPLY CERTIFICATE SORTING ====================
 function applyCertSort() {
     currentCertSortBy = document.getElementById('certSortBy').value;
 
@@ -1401,7 +1150,6 @@ function applyCertSort() {
     renderCertificates(currentCertPage);
 }
 
-// ==================== RESET CERTIFICATE FILTERS ====================
 function resetCertFilters() {
     document.getElementById('certSearch').value = '';
     document.getElementById('certStatusFilter').value = '';
@@ -1416,7 +1164,7 @@ function resetCertFilters() {
     applyCertSort();
 }
 
-// ==================== CERTIFICATE PAGINATION NAVIGATION ====================
+// ==================== CERTIFICATES PAGINATION NAVIGATION ====================
 function nextCertPage() {
     const totalPages = Math.ceil(filteredCerts.length / certsPerPage);
     if (currentCertPage < totalPages) {
@@ -1434,15 +1182,13 @@ function previousCertPage() {
     }
 }
 
-// ==================== SCROLL TO CERTIFICATE SECTION ====================
 function scrollToCertSection() {
-    const allCategories = document.querySelectorAll('.resources-category');
-    if (allCategories.length > 2) {
-        allCategories[2].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const certSection = document.getElementById('certificatesCategory');
+    if (certSection) {
+        certSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
-// ==================== EXPORT CERTIFICATES TO JSON ====================
 function exportCertsToJSON() {
     const dataToExport = {
         exportDate: new Date().toISOString(),
@@ -1468,41 +1214,174 @@ function exportCertsToJSON() {
     showNotification('✅ Certificates exported successfully as JSON!');
 }
 
-// ==================== KEYBOARD NAVIGATION FOR ALL SECTIONS ====================
-// document.addEventListener('keydown', (e) => {
-//     const bookSearch = document.getElementById('bookSearch');
-//     const courseSearch = document.getElementById('courseSearch');
-//     const certSearch = document.getElementById('certSearch');
+// ==================== NOTIFICATION SYSTEM ====================
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
 
-//     // Arrow keys for pagination
-//     if (e.key === 'ArrowRight') {
-//         e.preventDefault();
-//         const activeElement = document.activeElement;
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
 
-//         // Determine which section to navigate based on active element
-//         if (activeElement === certSearch) {
-//             nextCertPage();
-//         } else if (activeElement === courseSearch) {
-//             nextPage();
-//         } else if (activeElement === bookSearch) {
-//             nextBookPage();
-//         }
-//     } else if (e.key === 'ArrowLeft') {
-//         e.preventDefault();
-//         const activeElement = document.activeElement;
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
 
-//         if (activeElement === certSearch) {
-//             previousCertPage();
-//         } else if (activeElement === courseSearch) {
-//             previousPage();
-//         } else if (activeElement === bookSearch) {
-//             previousBookPage();
-//         }
-//     }
+// ==================== IMPROVED KEYBOARD NAVIGATION ====================
+document.addEventListener('keydown', (e) => {
+    const bookSearch = document.getElementById('bookSearch');
+    const courseSearch = document.getElementById('courseSearch');
+    const certSearch = document.getElementById('certSearch');
+    const activeElement = document.activeElement;
 
-//     // Ctrl+C to focus certificate search
-//     if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
-//         e.preventDefault();
-//         if (certSearch) certSearch.focus();
-//     }
-// });
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+
+        if (activeElement === bookSearch) {
+            nextBookPage();
+        } else if (activeElement === courseSearch) {
+            nextPage();
+        } else if (activeElement === certSearch) {
+            nextCertPage();
+        }
+    } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+
+        if (activeElement === bookSearch) {
+            previousBookPage();
+        } else if (activeElement === courseSearch) {
+            previousPage();
+        } else if (activeElement === certSearch) {
+            previousCertPage();
+        }
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        if (courseSearch) courseSearch.focus();
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        if (bookSearch) bookSearch.focus();
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+        e.preventDefault();
+        if (certSearch) certSearch.focus();
+    }
+
+    if (e.key === 'Escape') {
+        if (activeElement === bookSearch) clearBookSearch();
+        if (activeElement === courseSearch) clearSearch();
+        if (activeElement === certSearch) clearCertSearch();
+        document.activeElement.blur();
+    }
+});
+
+// ==================== INITIALIZE ALL SECTIONS ON PAGE LOAD ====================
+document.addEventListener('DOMContentLoaded', () => {
+    applyBookSort();
+    renderBooks(1);
+    applySort();
+    renderUdemyCourses(1);
+    applyCertSort();
+    renderCertificates(1);
+});
+
+// ==================== SMOOTH SCROLLING FOR NAVIGATION LINKS ====================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ==================== ADD ACTIVE STATE TO NAVBAR LINKS ON SCROLL ====================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href').slice(1) === current) {
+            link.style.color = 'var(--secondary-color)';
+            link.style.fontWeight = '700';
+        }
+    });
+});
+
+// ==================== ANIMATE ELEMENTS ON SCROLL ====================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.timeline-item, .skill-category, .resource-card, .education-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+});
+
+// ==================== PARALLAX EFFECT ON HERO SECTION ====================
+window.addEventListener('scroll', () => {
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        const scrollPosition = window.scrollY;
+        heroSection.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
+    }
+});
+// ==================== VISITOR COUNTER ====================
+function initializeVisitorCounter() {
+    const visitCountKey = 'portfolio_visit_count';
+    let visitCount = localStorage.getItem(visitCountKey);
+
+    if (!visitCount) {
+        visitCount = 5;
+    } else {
+        visitCount = parseInt(visitCount) + 1;
+    }
+
+    localStorage.setItem(visitCountKey, visitCount);
+
+    const visitCountElement = document.getElementById('visitCount');
+    if (visitCountElement) {
+        visitCountElement.textContent = visitCount;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeVisitorCounter);
+
