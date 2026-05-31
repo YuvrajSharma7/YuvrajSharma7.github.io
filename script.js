@@ -1,3 +1,167 @@
+// ==================== BOOKS DATA ====================
+const booksData = [
+    {
+        id: 1,
+        title: "Spring in Action",
+        author: "Craig Walls",
+        category: "Backend",
+        description: "Essential guide to building enterprise applications with Spring Boot and Spring Framework.",
+        keyTopics: ["Spring Boot", "Spring MVC", "Spring Data", "Dependency Injection"],
+        rating: 5,
+        year: 2022
+    },
+    {
+        id: 2,
+        title: "Microservices Patterns",
+        author: "Chris Richardson",
+        category: "Architecture",
+        description: "Comprehensive patterns for building distributed microservices architecture.",
+        keyTopics: ["Microservices", "Patterns", "API Gateway", "Service Discovery"],
+        rating: 5,
+        year: 2018
+    },
+    {
+        id: 3,
+        title: "Docker Deep Dive",
+        author: "Nigel Poulton",
+        category: "DevOps",
+        description: "Complete guide to containerization and Docker ecosystem for modern development.",
+        keyTopics: ["Docker", "Containers", "Images", "Networking"],
+        rating: 5,
+        year: 2020
+    },
+    {
+        id: 4,
+        title: "Kubernetes in Action",
+        author: "Marko Lukša",
+        category: "DevOps",
+        description: "Practical guide to orchestrating containers at scale with Kubernetes.",
+        keyTopics: ["Kubernetes", "Orchestration", "Pods", "Services"],
+        rating: 5,
+        year: 2017
+    },
+    {
+        id: 5,
+        title: "Learning React",
+        author: "Alex Banks & Eve Porcello",
+        category: "Frontend",
+        description: "Modern approach to building user interfaces with React and JavaScript.",
+        keyTopics: ["React", "Hooks", "State Management", "Components"],
+        rating: 5,
+        year: 2020
+    },
+    {
+        id: 6,
+        title: "Designing Data-Intensive Applications",
+        author: "Martin Kleppmann",
+        category: "Distributed Systems",
+        description: "Deep dive into distributed systems, databases, and system design fundamentals.",
+        keyTopics: ["Databases", "Distributed Systems", "Replication", "Consensus"],
+        rating: 5,
+        year: 2017
+    },
+    {
+        id: 7,
+        title: "OAuth 2.0 in Action",
+        author: "Justin Richer & Antonio Sanso",
+        category: "Backend",
+        description: "Complete guide to implementing modern authentication and authorization patterns.",
+        keyTopics: ["OAuth 2.0", "Security", "Authentication", "Authorization"],
+        rating: 4,
+        year: 2017
+    },
+    {
+        id: 8,
+        title: "AWS Certified Solutions Architect Associate Study Guide",
+        author: "Neal Davis & Jon Bonso",
+        category: "DevOps",
+        description: "Comprehensive study material for AWS Solutions Architect certification.",
+        keyTopics: ["AWS", "Cloud Architecture", "EC2", "S3", "Lambda"],
+        rating: 5,
+        year: 2022
+    },
+    {
+        id: 9,
+        title: "Test Driven Development",
+        author: "Kent Beck",
+        category: "Backend",
+        description: "Foundational practices for writing maintainable code through effective testing.",
+        keyTopics: ["TDD", "Unit Testing", "Integration Testing", "Code Quality"],
+        rating: 5,
+        year: 2002
+    },
+    {
+        id: 10,
+        title: "System Design Interview",
+        author: "Alex Xu",
+        category: "System Design",
+        description: "Practical guide to designing scalable systems and solving complex architecture problems.",
+        keyTopics: ["System Design", "Scalability", "Load Balancing", "Caching"],
+        rating: 5,
+        year: 2020
+    },
+    {
+        id: 11,
+        title: "The Data Warehouse Toolkit",
+        author: "Ralph Kimball",
+        category: "Distributed Systems",
+        description: "Essential patterns for building data warehouses and analytics solutions.",
+        keyTopics: ["Data Warehousing", "OLAP", "Dimensional Modeling", "ETL"],
+        rating: 5,
+        year: 2013
+    },
+    {
+        id: 12,
+        title: "Cracking the Coding Interview",
+        author: "Gayle Laakmann McDowell",
+        category: "Interview Prep",
+        description: "Problem-solving strategies and coding interview preparation guide.",
+        keyTopics: ["Algorithms", "Data Structures", "Interview Prep", "Problem Solving"],
+        rating: 5,
+        year: 2015
+    },
+    {
+        id: 13,
+        title: "Building Microservices",
+        author: "Sam Newman",
+        category: "Architecture",
+        description: "Design, develop, and deploy microservices-based systems with design patterns.",
+        keyTopics: ["Microservices", "Service Design", "Deployment", "Monitoring"],
+        rating: 5,
+        year: 2015
+    },
+    {
+        id: 14,
+        title: "The Phoenix Project",
+        author: "Gene Kim, Kevin Behr & George Spafford",
+        category: "DevOps",
+        description: "A novel about IT operations and DevOps practices, teaching lean principles.",
+        keyTopics: ["DevOps", "Lean", "Continuous Delivery", "Culture"],
+        rating: 5,
+        year: 2013
+    },
+    {
+        id: 15,
+        title: "Enterprise Integration Patterns",
+        author: "Gregor Hohpe & Bobby Woolf",
+        category: "Architecture",
+        description: "Designing reliable asynchronous messaging systems and integration solutions.",
+        keyTopics: ["Integration", "Messaging", "Patterns", "EIP"],
+        rating: 5,
+        year: 2003
+    },
+    {
+        id: 16,
+        title: "The Art of Computer Programming",
+        author: "Donald E. Knuth",
+        category: "System Design",
+        description: "Fundamental algorithms and data structures concepts for software development.",
+        keyTopics: ["Algorithms", "Data Structures", "Analysis", "Complexity"],
+        rating: 5,
+        year: 1968
+    }
+];
+
 // ==================== UDEMY COURSES DATA ====================
 const udemyCoursesData = [
     {
@@ -154,25 +318,445 @@ const udemyCoursesData = [
     }
 ];
 
-// ==================== PAGINATION AND FILTERING VARIABLES ====================
+// ==================== CERTIFICATES DATA ====================
+const certificatesData = [
+    {
+        id: 1,
+        title: "AWS Certified Solutions Architect - Associate",
+        issuer: "Amazon Web Services",
+        credentialId: "AWS-SAA-2024",
+        issuedDate: "2024-08-15",
+        expiryDate: "2027-08-15",
+        status: "Active",
+        skills: ["AWS", "Cloud Architecture", "EC2", "S3", "RDS", "Lambda"],
+        description: "Demonstrates expertise in designing distributed applications and systems on AWS platforms.",
+        link: "https://www.credly.com/badges/aws-saa"
+    },
+    {
+        id: 2,
+        title: "Docker Certified Associate",
+        issuer: "Docker Inc.",
+        credentialId: "DCA-2024-1908",
+        issuedDate: "2024-03-10",
+        expiryDate: "2026-03-10",
+        status: "Active",
+        skills: ["Docker", "Containerization", "DevOps", "Container Security"],
+        description: "Validates skills in designing, building, and operating Docker containers and applications.",
+        link: "https://www.credly.com/badges/docker-ca"
+    },
+    {
+        id: 3,
+        title: "Kubernetes Application Developer (CKAD)",
+        issuer: "Cloud Native Computing Foundation",
+        credentialId: "CKAD-2023-9012",
+        issuedDate: "2023-11-20",
+        expiryDate: "2026-11-20",
+        status: "Active",
+        skills: ["Kubernetes", "Container Orchestration", "Cloud Native", "DevOps"],
+        description: "Certifies ability to design, build, and deploy cloud-native applications using Kubernetes.",
+        link: "https://www.credly.com/badges/ckad"
+    },
+    {
+        id: 4,
+        title: "Secure Coding with Java",
+        issuer: "Oracle University",
+        credentialId: "SCJ-2023-5678",
+        issuedDate: "2023-07-05",
+        expiryDate: "2025-07-05",
+        status: "Active",
+        skills: ["Java Security", "Secure Coding", "Best Practices", "Code Quality"],
+        description: "Demonstrates knowledge of secure coding practices in Java applications.",
+        link: "https://education.oracle.com"
+    },
+    {
+        id: 5,
+        title: "Data Engineering Essentials",
+        issuer: "Cloudera",
+        credentialId: "DEE-2023-3456",
+        issuedDate: "2023-05-18",
+        expiryDate: "2025-05-18",
+        status: "Active",
+        skills: ["Data Engineering", "ETL", "Big Data", "Hadoop", "Spark"],
+        description: "Validates skills in data engineering, processing, and managing big data systems.",
+        link: "https://www.cloudera.com/about/training/certification.html"
+    },
+    {
+        id: 6,
+        title: "React.js Advanced Certificate",
+        issuer: "Scrimba",
+        credentialId: "RAC-2023-1234",
+        issuedDate: "2023-02-14",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["React", "Frontend Development", "JavaScript", "Component Design"],
+        description: "Advanced certification in React.js covering hooks, state management, and best practices.",
+        link: "https://scrimba.com"
+    },
+    {
+        id: 7,
+        title: "Google Cloud Professional Cloud Architect",
+        issuer: "Google Cloud",
+        credentialId: "GCP-PCA-2024",
+        issuedDate: "2024-06-20",
+        expiryDate: "2026-06-20",
+        status: "Active",
+        skills: ["Google Cloud", "Cloud Architecture", "GCP Services", "Cloud Security"],
+        description: "Demonstrates expertise in designing and managing robust, secure, scalable, and dynamic solutions on Google Cloud.",
+        link: "https://www.credential.net/gcp-architect"
+    },
+    {
+        id: 8,
+        title: "Microsoft Azure Administrator Certified",
+        issuer: "Microsoft",
+        credentialId: "AZ-104-2024",
+        issuedDate: "2024-04-12",
+        expiryDate: "2025-04-12",
+        status: "Active",
+        skills: ["Azure", "Cloud Administration", "Virtual Machines", "Storage", "Networking"],
+        description: "Certifies ability to implement, manage, and monitor Microsoft Azure environments.",
+        link: "https://learn.microsoft.com/credentials"
+    },
+    {
+        id: 9,
+        title: "Certified Kubernetes Administrator (CKA)",
+        issuer: "Cloud Native Computing Foundation",
+        credentialId: "CKA-2024-7890",
+        issuedDate: "2024-09-30",
+        expiryDate: "2027-09-30",
+        status: "Active",
+        skills: ["Kubernetes", "Cluster Management", "DevOps", "Container Orchestration"],
+        description: "Demonstrates ability to design, build, and manage production-grade Kubernetes clusters.",
+        link: "https://www.credly.com/badges/cka"
+    },
+    {
+        id: 10,
+        title: "HashiCorp Certified: Terraform Associate",
+        issuer: "HashiCorp",
+        credentialId: "TF-ASSOC-2024",
+        issuedDate: "2024-07-08",
+        expiryDate: "2026-07-08",
+        status: "Active",
+        skills: ["Terraform", "Infrastructure as Code", "DevOps", "Cloud Provisioning"],
+        description: "Validates ability to use Terraform to provision, modify, and maintain infrastructure.",
+        link: "https://www.credly.com/badges/terraform-associate"
+    },
+    {
+        id: 11,
+        title: "CompTIA Security+ CE",
+        issuer: "CompTIA",
+        credentialId: "SEC+-2022-1100",
+        issuedDate: "2022-11-25",
+        expiryDate: "2025-11-25",
+        status: "Active",
+        skills: ["Cybersecurity", "Network Security", "System Security", "Compliance"],
+        description: "Industry-recognized certification demonstrating competency in IT security.",
+        link: "https://www.comptia.org/certifications/security"
+    },
+    {
+        id: 12,
+        title: "Apache Kafka Developer Certification",
+        issuer: "Confluent",
+        credentialId: "KAFKA-DEV-2023",
+        issuedDate: "2023-12-10",
+        expiryDate: "2024-12-10",
+        status: "Expired",
+        skills: ["Apache Kafka", "Streaming", "Event Processing", "Big Data"],
+        description: "Demonstrates expertise in developing applications with Apache Kafka.",
+        link: "https://www.confluent.io/certification"
+    },
+    {
+        id: 13,
+        title: "MongoDB Developer Certification",
+        issuer: "MongoDB",
+        credentialId: "MONGO-DEV-2024",
+        issuedDate: "2024-01-15",
+        expiryDate: "2026-01-15",
+        status: "Active",
+        skills: ["MongoDB", "NoSQL", "Database Design", "Query Language"],
+        description: "Validates competency in developing applications using MongoDB.",
+        link: "https://university.mongodb.com/certification"
+    },
+    {
+        id: 14,
+        title: "AWS Certified Developer - Associate",
+        issuer: "Amazon Web Services",
+        credentialId: "AWS-DEV-2024",
+        issuedDate: "2024-10-05",
+        expiryDate: "2027-10-05",
+        status: "Active",
+        skills: ["AWS", "Application Development", "Lambda", "API Gateway", "DynamoDB"],
+        description: "Demonstrates ability to develop and maintain applications on AWS platforms.",
+        link: "https://www.credly.com/badges/aws-developer"
+    },
+    {
+        id: 15,
+        title: "Jenkins Engineer Certification",
+        issuer: "Linux Foundation",
+        credentialId: "JENKINS-ENG-2023",
+        issuedDate: "2023-08-22",
+        expiryDate: "2025-08-22",
+        status: "Active",
+        skills: ["Jenkins", "CI/CD", "DevOps", "Automation", "Pipeline"],
+        description: "Validates proficiency in using and administering Jenkins for continuous integration and delivery.",
+        link: "https://www.linuxfoundation.org"
+    },
+    {
+        id: 16,
+        title: "Oracle Certified Associate Java Programmer",
+        issuer: "Oracle",
+        credentialId: "OCAJP-2023-6789",
+        issuedDate: "2023-09-12",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Java", "OOP", "Programming", "Java 8+", "Core Concepts"],
+        description: "Demonstrates knowledge of Java programming fundamentals and core concepts.",
+        link: "https://www.oracle.com/certification/ocajp"
+    }
+];
+
+// ==================== BOOKS PAGINATION VARIABLES ====================
+let currentBookPage = 1;
+const booksPerPage = 2;
+let filteredBooks = [...booksData];
+let currentBookSortBy = 'alphabetical';
+let currentCategoryFilter = '';
+let currentBookSearchTerm = '';
+
+// ==================== UDEMY PAGINATION VARIABLES ====================
 let currentPage = 1;
-const coursesPerPage = 4;
+const coursesPerPage = 2;
 let filteredCourses = [...udemyCoursesData];
 let currentSortBy = 'recent';
 let currentStatusFilter = '';
 let currentSearchTerm = '';
 
-// ==================== RENDER COURSES FUNCTION ====================
+// ==================== CERTIFICATES PAGINATION VARIABLES ====================
+let currentCertPage = 1;
+const certsPerPage = 2;
+let filteredCerts = [...certificatesData];
+let currentCertSortBy = 'issued';
+let currentCertStatusFilter = '';
+let currentCertSearchTerm = '';
+
+// ==================== RENDER BOOKS FUNCTION ====================
+function renderBooks(page) {
+    const container = document.getElementById('booksContainer');
+    container.innerHTML = '';
+
+    const startIndex = (page - 1) * booksPerPage;
+    const endIndex = startIndex + booksPerPage;
+    const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
+
+    if (booksToDisplay.length === 0) {
+        container.innerHTML = `
+            <div class="no-courses-message" style="grid-column: 1 / -1;">
+                <p>😔 No books found matching your criteria.</p>
+                <button onclick="resetBookFilters()" class="reset-filters-btn">Reset Filters</button>
+            </div>
+        `;
+        updateBookPageInfo();
+        return;
+    }
+
+    for (let i = 0; i < booksToDisplay.length; i++) {
+        const book = booksToDisplay[i];
+
+        const bookCard = document.createElement('div');
+        bookCard.className = 'resource-card';
+        bookCard.setAttribute('data-book-id', book.id);
+        bookCard.innerHTML = `
+            <div class="resource-icon">📘</div>
+            <h4>${highlightBookSearchTerm(book.title)}</h4>
+            <p class="author">${highlightBookSearchTerm(book.author)}</p>
+            <div class="book-meta">
+                <span class="book-category">${book.category}</span>
+                <span class="book-year">${book.year}</span>
+            </div>
+            <p class="description">${highlightBookSearchTerm(book.description)}</p>
+            <div class="book-topics">
+                ${book.keyTopics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+            </div>
+            <div class="book-rating">
+                ${'⭐'.repeat(book.rating)} (${book.rating}/5)
+            </div>
+        `;
+
+        container.appendChild(bookCard);
+    }
+
+    updateBookPageInfo();
+
+    const cards = document.querySelectorAll('[data-book-id]');
+    cards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+    });
+}
+
+function highlightBookSearchTerm(text) {
+    if (!currentBookSearchTerm) return text;
+    const regex = new RegExp(`(${currentBookSearchTerm})`, 'gi');
+    return text.replace(regex, '<mark>\$1</mark>');
+}
+
+function updateBookPageInfo() {
+    const pageNumber = document.getElementById('bookPageNumber');
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+
+    pageNumber.textContent = `Page ${currentBookPage} of ${totalPages || 1}`;
+
+    const pagination = document.getElementById('booksPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentBookPage === 1 || filteredBooks.length === 0;
+            nextBtn.disabled = currentBookPage === totalPages || filteredBooks.length === 0;
+        }
+    }
+
+    updateBookResultsCount();
+}
+
+function updateBookResultsCount() {
+    const bookCount = document.getElementById('bookCount');
+    const total = filteredBooks.length;
+
+    if (currentBookSearchTerm || currentCategoryFilter) {
+        bookCount.textContent = `Found ${total} book${total !== 1 ? 's' : ''}`;
+    } else {
+        bookCount.textContent = `Showing all ${total} books`;
+    }
+}
+
+function handleBookSearch() {
+    const searchInput = document.getElementById('bookSearch');
+    currentBookSearchTerm = searchInput.value.toLowerCase().trim();
+    currentBookPage = 1;
+    applyBookFilters();
+}
+
+function clearBookSearch() {
+    document.getElementById('bookSearch').value = '';
+    currentBookSearchTerm = '';
+    currentBookPage = 1;
+    applyBookFilters();
+}
+
+function applyBookFilters() {
+    currentCategoryFilter = document.getElementById('categoryFilter').value;
+
+    filteredBooks = booksData.filter(book => {
+        const matchesSearch =
+            book.title.toLowerCase().includes(currentBookSearchTerm) ||
+            book.author.toLowerCase().includes(currentBookSearchTerm) ||
+            book.description.toLowerCase().includes(currentBookSearchTerm) ||
+            book.keyTopics.some(topic => topic.toLowerCase().includes(currentBookSearchTerm));
+
+        const matchesCategory = currentCategoryFilter === '' || book.category === currentCategoryFilter;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    applyBookSort();
+}
+
+function applyBookSort() {
+    currentBookSortBy = document.getElementById('bookSortBy').value;
+
+    switch (currentBookSortBy) {
+        case 'author':
+            filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
+            break;
+        case 'category':
+            filteredBooks.sort((a, b) => {
+                if (a.category === b.category) {
+                    return a.title.localeCompare(b.title);
+                }
+                return a.category.localeCompare(b.category);
+            });
+            break;
+        case 'alphabetical':
+        default:
+            filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+    }
+
+    currentBookPage = 1;
+    renderBooks(currentBookPage);
+}
+
+function resetBookFilters() {
+    document.getElementById('bookSearch').value = '';
+    document.getElementById('categoryFilter').value = '';
+    document.getElementById('bookSortBy').value = 'alphabetical';
+
+    currentBookSearchTerm = '';
+    currentCategoryFilter = '';
+    currentBookSortBy = 'alphabetical';
+    currentBookPage = 1;
+
+    filteredBooks = [...booksData];
+    applyBookSort();
+}
+
+// ==================== BOOKS PAGINATION NAVIGATION ====================
+function nextBookPage() {
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    if (currentBookPage < totalPages) {
+        currentBookPage++;
+        renderBooks(currentBookPage);
+        scrollToBookSection();
+    }
+}
+
+function previousBookPage() {
+    if (currentBookPage > 1) {
+        currentBookPage--;
+        renderBooks(currentBookPage);
+        scrollToBookSection();
+    }
+}
+
+function scrollToBookSection() {
+    const booksSection = document.getElementById('booksCategory');
+    if (booksSection) {
+        booksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function exportBooksToJSON() {
+    const dataToExport = {
+        exportDate: new Date().toISOString(),
+        totalBooks: booksData.length,
+        categories: [...new Set(booksData.map(b => b.category))],
+        books: booksData
+    };
+
+    const jsonString = JSON.stringify(dataToExport, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `yuvraj-books-${new Date().toISOString().split('T')[0]}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showNotification('✅ Books exported successfully as JSON!');
+}
+
+// ==================== RENDER UDEMY COURSES FUNCTION ====================
 function renderUdemyCourses(page) {
     const container = document.getElementById('udemyCoursesContainer');
     container.innerHTML = '';
 
-    // Calculate start and end index
     const startIndex = (page - 1) * coursesPerPage;
     const endIndex = startIndex + coursesPerPage;
     const coursesToDisplay = filteredCourses.slice(startIndex, endIndex);
 
-    // Check if no courses found
     if (coursesToDisplay.length === 0) {
         container.innerHTML = `
             <div class="no-courses-message">
@@ -184,14 +768,10 @@ function renderUdemyCourses(page) {
         return;
     }
 
-    // Create course cards using for loop
     for (let i = 0; i < coursesToDisplay.length; i++) {
         const course = coursesToDisplay[i];
-
-        // Create status badge color
         const statusClass = course.status === 'Completed' ? 'status-completed' : 'status-inprogress';
 
-        // Create course card HTML
         const courseCard = document.createElement('div');
         courseCard.className = 'udemy-card';
         courseCard.setAttribute('data-course-id', course.id);
@@ -208,43 +788,40 @@ function renderUdemyCourses(page) {
         container.appendChild(courseCard);
     }
 
-    // Update page info
     updatePageInfo();
 
-    // Add animation
-    const cards = document.querySelectorAll('.udemy-card');
+    const cards = document.querySelectorAll('[data-course-id]');
     cards.forEach((card, index) => {
         card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
     });
 }
 
-// ==================== HIGHLIGHT SEARCH TERM ====================
 function highlightSearchTerm(text) {
     if (!currentSearchTerm) return text;
-
     const regex = new RegExp(`(${currentSearchTerm})`, 'gi');
     return text.replace(regex, '<mark>\$1</mark>');
 }
 
-// ==================== UPDATE PAGE INFO ====================
 function updatePageInfo() {
     const pageNumber = document.getElementById('pageNumber');
     const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
 
     pageNumber.textContent = `Page ${currentPage} of ${totalPages || 1}`;
 
-    // Update button states
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const pagination = document.getElementById('udemyPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
 
-    prevBtn.disabled = currentPage === 1 || filteredCourses.length === 0;
-    nextBtn.disabled = currentPage === totalPages || filteredCourses.length === 0;
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentPage === 1 || filteredCourses.length === 0;
+            nextBtn.disabled = currentPage === totalPages || filteredCourses.length === 0;
+        }
+    }
 
-    // Update results count
     updateResultsCount();
 }
 
-// ==================== UPDATE RESULTS COUNT ====================
 function updateResultsCount() {
     const courseCount = document.getElementById('courseCount');
     const total = filteredCourses.length;
@@ -258,16 +835,13 @@ function updateResultsCount() {
     }
 }
 
-// ==================== SEARCH FUNCTION ====================
 function handleSearch() {
     const searchInput = document.getElementById('courseSearch');
     currentSearchTerm = searchInput.value.toLowerCase().trim();
     currentPage = 1;
-
     applyFilters();
 }
 
-// ==================== CLEAR SEARCH ====================
 function clearSearch() {
     document.getElementById('courseSearch').value = '';
     currentSearchTerm = '';
@@ -275,30 +849,23 @@ function clearSearch() {
     applyFilters();
 }
 
-// ==================== APPLY FILTERS ====================
 function applyFilters() {
-    // Get current filter values
     currentStatusFilter = document.getElementById('statusFilter').value;
 
-    // Filter courses
     filteredCourses = udemyCoursesData.filter(course => {
-        // Search filter
         const matchesSearch =
             course.title.toLowerCase().includes(currentSearchTerm) ||
             course.description.toLowerCase().includes(currentSearchTerm) ||
             course.tags.some(tag => tag.toLowerCase().includes(currentSearchTerm));
 
-        // Status filter
         const matchesStatus = currentStatusFilter === '' || course.status === currentStatusFilter;
 
         return matchesSearch && matchesStatus;
     });
 
-    // Apply current sort
     applySort();
 }
 
-// ==================== APPLY SORTING ====================
 function applySort() {
     currentSortBy = document.getElementById('sortBy').value;
 
@@ -328,7 +895,6 @@ function applySort() {
     renderUdemyCourses(currentPage);
 }
 
-// ==================== RESET FILTERS ====================
 function resetFilters() {
     document.getElementById('courseSearch').value = '';
     document.getElementById('statusFilter').value = '';
@@ -343,14 +909,14 @@ function resetFilters() {
     applySort();
 }
 
-// ==================== PAGINATION NAVIGATION ====================
+// ==================== UDEMY PAGINATION NAVIGATION ====================
 function nextPage() {
     const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
 
     if (currentPage < totalPages) {
         currentPage++;
         renderUdemyCourses(currentPage);
-        scrollToSection();
+        scrollToUdemySection();
     }
 }
 
@@ -358,42 +924,17 @@ function previousPage() {
     if (currentPage > 1) {
         currentPage--;
         renderUdemyCourses(currentPage);
-        scrollToSection();
+        scrollToUdemySection();
     }
 }
 
-// ==================== SCROLL TO SECTION ====================
-function scrollToSection() {
-    const coursesSection = document.querySelector('.resources-category');
-    if (coursesSection) {
-        coursesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function scrollToUdemySection() {
+    const udemySection = document.getElementById('udemyCategory');
+    if (udemySection) {
+        udemySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
-// ==================== KEYBOARD NAVIGATION ====================
-document.addEventListener('keydown', (e) => {
-    // Arrow keys for pagination
-    if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextPage();
-    } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        previousPage();
-    }
-
-    // Ctrl+K to focus search
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        document.getElementById('courseSearch').focus();
-    }
-
-    // Escape to clear search
-    if (e.key === 'Escape') {
-        clearSearch();
-    }
-});
-
-// ==================== EXPORT TO JSON ====================
 function exportCoursesToJSON() {
     const dataToExport = {
         exportDate: new Date().toISOString(),
@@ -403,29 +944,277 @@ function exportCoursesToJSON() {
         courses: udemyCoursesData
     };
 
-    // Convert to JSON string
     const jsonString = JSON.stringify(dataToExport, null, 2);
-
-    // Create blob
     const blob = new Blob([jsonString], { type: 'application/json' });
-
-    // Create download link
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
     link.download = `yuvraj-udemy-courses-${new Date().toISOString().split('T')[0]}.json`;
 
-    // Trigger download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 
-    // Show confirmation message
     showNotification('✅ Courses exported successfully as JSON!');
 }
 
-// ==================== SHOW NOTIFICATION ====================
+// ==================== RENDER CERTIFICATES FUNCTION ====================
+function renderCertificates(page) {
+    const container = document.getElementById('certificatesContainer');
+    container.innerHTML = '';
+
+    const startIndex = (page - 1) * certsPerPage;
+    const endIndex = startIndex + certsPerPage;
+    const certsToDisplay = filteredCerts.slice(startIndex, endIndex);
+
+    if (certsToDisplay.length === 0) {
+        container.innerHTML = `
+            <div class="no-courses-message" style="grid-column: 1 / -1;">
+                <p>😔 No certificates found matching your criteria.</p>
+                <button onclick="resetCertFilters()" class="reset-filters-btn">Reset Filters</button>
+            </div>
+        `;
+        updateCertPageInfo();
+        return;
+    }
+
+    for (let i = 0; i < certsToDisplay.length; i++) {
+        const cert = certsToDisplay[i];
+
+        let statusColor = 'status-active';
+        if (cert.status === 'Expired') statusColor = 'status-expired';
+        if (cert.status === 'Lifetime') statusColor = 'status-lifetime';
+
+        const issuedDate = new Date(cert.issuedDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+
+        const expiryDate = cert.expiryDate
+            ? new Date(cert.expiryDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            })
+            : 'Lifetime';
+
+        let expiringSoon = false;
+        if (cert.expiryDate) {
+            const daysUntilExpiry = Math.floor((new Date(cert.expiryDate) - new Date()) / (1000 * 60 * 60 * 24));
+            expiringSoon = daysUntilExpiry > 0 && daysUntilExpiry <= 30;
+        }
+
+        const certCard = document.createElement('div');
+        certCard.className = 'certificate-card';
+        if (expiringSoon) certCard.classList.add('expiring-soon');
+        certCard.setAttribute('data-cert-id', cert.id);
+        certCard.innerHTML = `
+            <div class="cert-icon">🎖️</div>
+            <h4>${highlightCertSearchTerm(cert.title)}</h4>
+            <p class="issuer">${highlightCertSearchTerm(cert.issuer)}</p>
+            <div class="cert-status ${statusColor}">${cert.status}</div>
+            <div class="cert-details">
+                <div class="cert-detail-item">
+                    <span class="label">Issued:</span>
+                    <span class="value">${issuedDate}</span>
+                </div>
+                <div class="cert-detail-item">
+                    <span class="label">Expires:</span>
+                    <span class="value">${expiryDate}</span>
+                </div>
+                <div class="cert-detail-item">
+                    <span class="label">ID:</span>
+                    <span class="value cert-id">${cert.credentialId}</span>
+                </div>
+            </div>
+            <div class="cert-tags">
+                ${cert.skills.map(skill => `<span class="cert-tag">${skill}</span>`).join('')}
+            </div>
+            ${expiringSoon ? '<div class="expiring-warning">⚠️ Expiring Soon</div>' : ''}
+            <a href="${cert.link}" target="_blank" class="view-cert-btn">View Credential →</a>
+        `;
+
+        container.appendChild(certCard);
+    }
+
+    updateCertPageInfo();
+
+    const cards = document.querySelectorAll('[data-cert-id]');
+    cards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+    });
+}
+
+function highlightCertSearchTerm(text) {
+    if (!currentCertSearchTerm) return text;
+    const regex = new RegExp(`(${currentCertSearchTerm})`, 'gi');
+    return text.replace(regex, '<mark>\$1</mark>');
+}
+
+function updateCertPageInfo() {
+    const pageNumber = document.getElementById('certPageNumber');
+    const totalPages = Math.ceil(filteredCerts.length / certsPerPage);
+
+    pageNumber.textContent = `Page ${currentCertPage} of ${totalPages || 1}`;
+
+    const pagination = document.getElementById('certsPagination');
+    if (pagination) {
+        const prevBtn = pagination.querySelector('.prev-btn');
+        const nextBtn = pagination.querySelector('.next-btn');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentCertPage === 1 || filteredCerts.length === 0;
+            nextBtn.disabled = currentCertPage === totalPages || filteredCerts.length === 0;
+        }
+    }
+
+    updateCertResultsCount();
+}
+
+function updateCertResultsCount() {
+    const certCount = document.getElementById('certCount');
+    const total = filteredCerts.length;
+    const active = filteredCerts.filter(c => c.status === 'Active').length;
+    const expired = filteredCerts.filter(c => c.status === 'Expired').length;
+    const lifetime = filteredCerts.filter(c => c.status === 'Lifetime').length;
+
+    if (currentCertSearchTerm || currentCertStatusFilter) {
+        certCount.textContent = `Found ${total} certificate${total !== 1 ? 's' : ''} (${active} Active, ${expired} Expired, ${lifetime} Lifetime)`;
+    } else {
+        certCount.textContent = `Showing all ${total} certificates (${active} Active, ${expired} Expired, ${lifetime} Lifetime)`;
+    }
+}
+
+function handleCertSearch() {
+    const searchInput = document.getElementById('certSearch');
+    currentCertSearchTerm = searchInput.value.toLowerCase().trim();
+    currentCertPage = 1;
+    applyCertFilters();
+}
+
+function clearCertSearch() {
+    document.getElementById('certSearch').value = '';
+    currentCertSearchTerm = '';
+    currentCertPage = 1;
+    applyCertFilters();
+}
+
+function applyCertFilters() {
+    currentCertStatusFilter = document.getElementById('certStatusFilter').value;
+
+    filteredCerts = certificatesData.filter(cert => {
+        const matchesSearch =
+            cert.title.toLowerCase().includes(currentCertSearchTerm) ||
+            cert.issuer.toLowerCase().includes(currentCertSearchTerm) ||
+            cert.credentialId.toLowerCase().includes(currentCertSearchTerm) ||
+            cert.skills.some(skill => skill.toLowerCase().includes(currentCertSearchTerm));
+
+        const matchesStatus = currentCertStatusFilter === '' || cert.status === currentCertStatusFilter;
+
+        return matchesSearch && matchesStatus;
+    });
+
+    applyCertSort();
+}
+
+function applyCertSort() {
+    currentCertSortBy = document.getElementById('certSortBy').value;
+
+    switch (currentCertSortBy) {
+        case 'alphabetical':
+            filteredCerts.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'issuer':
+            filteredCerts.sort((a, b) => a.issuer.localeCompare(b.issuer));
+            break;
+        case 'expiry':
+            filteredCerts.sort((a, b) => {
+                const dateA = new Date(a.expiryDate || '9999-12-31');
+                const dateB = new Date(b.expiryDate || '9999-12-31');
+                return dateA - dateB;
+            });
+            break;
+        case 'issued':
+        default:
+            filteredCerts.sort((a, b) => {
+                const dateA = new Date(a.issuedDate);
+                const dateB = new Date(b.issuedDate);
+                return dateB - dateA;
+            });
+            break;
+    }
+
+    currentCertPage = 1;
+    renderCertificates(currentCertPage);
+}
+
+function resetCertFilters() {
+    document.getElementById('certSearch').value = '';
+    document.getElementById('certStatusFilter').value = '';
+    document.getElementById('certSortBy').value = 'issued';
+
+    currentCertSearchTerm = '';
+    currentCertStatusFilter = '';
+    currentCertSortBy = 'issued';
+    currentCertPage = 1;
+
+    filteredCerts = [...certificatesData];
+    applyCertSort();
+}
+
+// ==================== CERTIFICATES PAGINATION NAVIGATION ====================
+function nextCertPage() {
+    const totalPages = Math.ceil(filteredCerts.length / certsPerPage);
+    if (currentCertPage < totalPages) {
+        currentCertPage++;
+        renderCertificates(currentCertPage);
+        scrollToCertSection();
+    }
+}
+
+function previousCertPage() {
+    if (currentCertPage > 1) {
+        currentCertPage--;
+        renderCertificates(currentCertPage);
+        scrollToCertSection();
+    }
+}
+
+function scrollToCertSection() {
+    const certSection = document.getElementById('certificatesCategory');
+    if (certSection) {
+        certSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function exportCertsToJSON() {
+    const dataToExport = {
+        exportDate: new Date().toISOString(),
+        totalCertificates: certificatesData.length,
+        activeCertificates: certificatesData.filter(c => c.status === 'Active').length,
+        expiredCertificates: certificatesData.filter(c => c.status === 'Expired').length,
+        lifetimeCertificates: certificatesData.filter(c => c.status === 'Lifetime').length,
+        certificates: certificatesData
+    };
+
+    const jsonString = JSON.stringify(dataToExport, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `yuvraj-certificates-${new Date().toISOString().split('T')[0]}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showNotification('✅ Certificates exported successfully as JSON!');
+}
+
+// ==================== NOTIFICATION SYSTEM ====================
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -444,34 +1233,66 @@ function showNotification(message) {
     }, 3000);
 }
 
-// ==================== IMPORT FROM JSON ====================
-function importCoursesFromJSON(file) {
-    const reader = new FileReader();
+// ==================== IMPROVED KEYBOARD NAVIGATION ====================
+document.addEventListener('keydown', (e) => {
+    const bookSearch = document.getElementById('bookSearch');
+    const courseSearch = document.getElementById('courseSearch');
+    const certSearch = document.getElementById('certSearch');
+    const activeElement = document.activeElement;
 
-    reader.onload = (e) => {
-        try {
-            const data = JSON.parse(e.target.result);
-            if (data.courses && Array.isArray(data.courses)) {
-                udemyCoursesData.length = 0;
-                udemyCoursesData.push(...data.courses);
-                filteredCourses = [...udemyCoursesData];
-                currentPage = 1;
-                renderUdemyCourses(1);
-                showNotification('✅ Courses imported successfully!');
-            } else {
-                showNotification('❌ Invalid JSON format');
-            }
-        } catch (error) {
-            showNotification('❌ Error importing JSON: ' + error.message);
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+
+        if (activeElement === bookSearch) {
+            nextBookPage();
+        } else if (activeElement === courseSearch) {
+            nextPage();
+        } else if (activeElement === certSearch) {
+            nextCertPage();
         }
-    };
+    } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
 
-    reader.readAsText(file);
-}
+        if (activeElement === bookSearch) {
+            previousBookPage();
+        } else if (activeElement === courseSearch) {
+            previousPage();
+        } else if (activeElement === certSearch) {
+            previousCertPage();
+        }
+    }
 
-// ==================== INITIALIZE COURSES ON PAGE LOAD ====================
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        if (courseSearch) courseSearch.focus();
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        if (bookSearch) bookSearch.focus();
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+        e.preventDefault();
+        if (certSearch) certSearch.focus();
+    }
+
+    if (e.key === 'Escape') {
+        if (activeElement === bookSearch) clearBookSearch();
+        if (activeElement === courseSearch) clearSearch();
+        if (activeElement === certSearch) clearCertSearch();
+        document.activeElement.blur();
+    }
+});
+
+// ==================== INITIALIZE ALL SECTIONS ON PAGE LOAD ====================
 document.addEventListener('DOMContentLoaded', () => {
+    applyBookSort();
+    renderBooks(1);
+    applySort();
     renderUdemyCourses(1);
+    applyCertSort();
+    renderCertificates(1);
 });
 
 // ==================== SMOOTH SCROLLING FOR NAVIGATION LINKS ====================
@@ -543,3 +1364,24 @@ window.addEventListener('scroll', () => {
         heroSection.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
     }
 });
+// ==================== VISITOR COUNTER ====================
+function initializeVisitorCounter() {
+    const visitCountKey = 'portfolio_visit_count';
+    let visitCount = localStorage.getItem(visitCountKey);
+
+    if (!visitCount) {
+        visitCount = 5;
+    } else {
+        visitCount = parseInt(visitCount) + 1;
+    }
+
+    localStorage.setItem(visitCountKey, visitCount);
+
+    const visitCountElement = document.getElementById('visitCount');
+    if (visitCountElement) {
+        visitCountElement.textContent = visitCount;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeVisitorCounter);
+
