@@ -346,18 +346,6 @@ const certificatesData = [
     },
     {
         id: 3,
-        title: "Kubernetes Application Developer (CKAD)",
-        issuer: "Cloud Native Computing Foundation",
-        credentialId: "CKAD-2023-9012",
-        issuedDate: "2023-11-20",
-        expiryDate: "2026-11-20",
-        status: "Active",
-        skills: ["Kubernetes", "Container Orchestration", "Cloud Native", "DevOps"],
-        description: "Certifies ability to design, build, and deploy cloud-native applications using Kubernetes.",
-        link: "https://www.credly.com/badges/ckad"
-    },
-    {
-        id: 4,
         title: "Secure Coding with Java",
         issuer: "Oracle University",
         credentialId: "SCJ-2023-5678",
@@ -369,7 +357,7 @@ const certificatesData = [
         link: "https://education.oracle.com"
     },
     {
-        id: 5,
+        id: 4,
         title: "Data Engineering Essentials",
         issuer: "Cloudera",
         credentialId: "DEE-2023-3456",
@@ -381,7 +369,7 @@ const certificatesData = [
         link: "https://www.cloudera.com/about/training/certification.html"
     },
     {
-        id: 6,
+        id: 5,
         title: "React.js Advanced Certificate",
         issuer: "Scrimba",
         credentialId: "RAC-2023-1234",
@@ -393,67 +381,7 @@ const certificatesData = [
         link: "https://scrimba.com"
     },
     {
-        id: 7,
-        title: "Google Cloud Professional Cloud Architect",
-        issuer: "Google Cloud",
-        credentialId: "GCP-PCA-2024",
-        issuedDate: "2024-06-20",
-        expiryDate: "2026-06-20",
-        status: "Active",
-        skills: ["Google Cloud", "Cloud Architecture", "GCP Services", "Cloud Security"],
-        description: "Demonstrates expertise in designing and managing robust, secure, scalable, and dynamic solutions on Google Cloud.",
-        link: "https://www.credential.net/gcp-architect"
-    },
-    {
-        id: 8,
-        title: "Microsoft Azure Administrator Certified",
-        issuer: "Microsoft",
-        credentialId: "AZ-104-2024",
-        issuedDate: "2024-04-12",
-        expiryDate: "2025-04-12",
-        status: "Active",
-        skills: ["Azure", "Cloud Administration", "Virtual Machines", "Storage", "Networking"],
-        description: "Certifies ability to implement, manage, and monitor Microsoft Azure environments.",
-        link: "https://learn.microsoft.com/credentials"
-    },
-    {
-        id: 9,
-        title: "Certified Kubernetes Administrator (CKA)",
-        issuer: "Cloud Native Computing Foundation",
-        credentialId: "CKA-2024-7890",
-        issuedDate: "2024-09-30",
-        expiryDate: "2027-09-30",
-        status: "Active",
-        skills: ["Kubernetes", "Cluster Management", "DevOps", "Container Orchestration"],
-        description: "Demonstrates ability to design, build, and manage production-grade Kubernetes clusters.",
-        link: "https://www.credly.com/badges/cka"
-    },
-    {
-        id: 10,
-        title: "HashiCorp Certified: Terraform Associate",
-        issuer: "HashiCorp",
-        credentialId: "TF-ASSOC-2024",
-        issuedDate: "2024-07-08",
-        expiryDate: "2026-07-08",
-        status: "Active",
-        skills: ["Terraform", "Infrastructure as Code", "DevOps", "Cloud Provisioning"],
-        description: "Validates ability to use Terraform to provision, modify, and maintain infrastructure.",
-        link: "https://www.credly.com/badges/terraform-associate"
-    },
-    {
-        id: 11,
-        title: "CompTIA Security+ CE",
-        issuer: "CompTIA",
-        credentialId: "SEC+-2022-1100",
-        issuedDate: "2022-11-25",
-        expiryDate: "2025-11-25",
-        status: "Active",
-        skills: ["Cybersecurity", "Network Security", "System Security", "Compliance"],
-        description: "Industry-recognized certification demonstrating competency in IT security.",
-        link: "https://www.comptia.org/certifications/security"
-    },
-    {
-        id: 12,
+        id: 6,
         title: "Apache Kafka Developer Certification",
         issuer: "Confluent",
         credentialId: "KAFKA-DEV-2023",
@@ -465,31 +393,7 @@ const certificatesData = [
         link: "https://www.confluent.io/certification"
     },
     {
-        id: 13,
-        title: "MongoDB Developer Certification",
-        issuer: "MongoDB",
-        credentialId: "MONGO-DEV-2024",
-        issuedDate: "2024-01-15",
-        expiryDate: "2026-01-15",
-        status: "Active",
-        skills: ["MongoDB", "NoSQL", "Database Design", "Query Language"],
-        description: "Validates competency in developing applications using MongoDB.",
-        link: "https://university.mongodb.com/certification"
-    },
-    {
-        id: 14,
-        title: "AWS Certified Developer - Associate",
-        issuer: "Amazon Web Services",
-        credentialId: "AWS-DEV-2024",
-        issuedDate: "2024-10-05",
-        expiryDate: "2027-10-05",
-        status: "Active",
-        skills: ["AWS", "Application Development", "Lambda", "API Gateway", "DynamoDB"],
-        description: "Demonstrates ability to develop and maintain applications on AWS platforms.",
-        link: "https://www.credly.com/badges/aws-developer"
-    },
-    {
-        id: 15,
+        id: 7,
         title: "Jenkins Engineer Certification",
         issuer: "Linux Foundation",
         credentialId: "JENKINS-ENG-2023",
@@ -501,7 +405,7 @@ const certificatesData = [
         link: "https://www.linuxfoundation.org"
     },
     {
-        id: 16,
+        id: 8,
         title: "Oracle Certified Associate Java Programmer",
         issuer: "Oracle",
         credentialId: "OCAJP-2023-6789",
