@@ -1025,10 +1025,6 @@ function renderCertificates(page) {
                     <span class="label">Expires:</span>
                     <span class="value">${expiryDate}</span>
                 </div>
-                <div class="cert-detail-item">
-                    <span class="label">ID:</span>
-                    <span class="value cert-id">${cert.credentialId}</span>
-                </div>
             </div>
             <div class="cert-tags">
                 ${cert.skills.map(skill => `<span class="cert-tag">${skill}</span>`).join('')}
