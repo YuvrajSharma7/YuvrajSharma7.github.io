@@ -330,7 +330,7 @@ const certificatesData = [
         status: "Active",
         skills: ["AWS", "Cloud Architecture", "EC2", "S3", "RDS", "Lambda"],
         description: "Demonstrates expertise in designing distributed applications and systems on AWS platforms.",
-        link: "https://www.credly.com/badges/aws-saa"
+        link: "https://www.credly.com/badges/1b5b3bba-49da-45fa-a2b5-316618b75e37/linked_in_profile"
     },
     {
         id: 2,
@@ -339,10 +339,10 @@ const certificatesData = [
         credentialId: "DCA-2024-1908",
         issuedDate: "2024-03-10",
         expiryDate: "2026-03-10",
-        status: "Active",
+        status: "Expired",
         skills: ["Docker", "Containerization", "DevOps", "Container Security"],
         description: "Validates skills in designing, building, and operating Docker containers and applications.",
-        link: "https://www.credly.com/badges/docker-ca"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 3,
@@ -351,10 +351,10 @@ const certificatesData = [
         credentialId: "SCJ-2023-5678",
         issuedDate: "2023-07-05",
         expiryDate: "2025-07-05",
-        status: "Active",
+        status: "Expired",
         skills: ["Java Security", "Secure Coding", "Best Practices", "Code Quality"],
         description: "Demonstrates knowledge of secure coding practices in Java applications.",
-        link: "https://education.oracle.com"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 4,
@@ -363,22 +363,22 @@ const certificatesData = [
         credentialId: "DEE-2023-3456",
         issuedDate: "2023-05-18",
         expiryDate: "2025-05-18",
-        status: "Active",
+        status: "Expired",
         skills: ["Data Engineering", "ETL", "Big Data", "Hadoop", "Spark"],
         description: "Validates skills in data engineering, processing, and managing big data systems.",
-        link: "https://www.cloudera.com/about/training/certification.html"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 5,
-        title: "React.js Advanced Certificate",
-        issuer: "Scrimba",
-        credentialId: "RAC-2023-1234",
-        issuedDate: "2023-02-14",
+        title: "MySQL 8.1 Developer",
+        issuer: "HackerRank",
+        credentialId: "MYSQL-DEV-2023-7890",
+        issuedDate: "2023-09-25",
         expiryDate: null,
         status: "Lifetime",
-        skills: ["React", "Frontend Development", "JavaScript", "Component Design"],
-        description: "Advanced certification in React.js covering hooks, state management, and best practices.",
-        link: "https://scrimba.com"
+        skills: ["MySQL", "Database Design", "SQL", "Performance Optimization"],
+        description: "Advanced certification in MySQL 8.1 covering advanced features and best practices.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 6,
@@ -390,7 +390,7 @@ const certificatesData = [
         status: "Expired",
         skills: ["Apache Kafka", "Streaming", "Event Processing", "Big Data"],
         description: "Demonstrates expertise in developing applications with Apache Kafka.",
-        link: "https://www.confluent.io/certification"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 7,
@@ -399,22 +399,119 @@ const certificatesData = [
         credentialId: "JENKINS-ENG-2023",
         issuedDate: "2023-08-22",
         expiryDate: "2025-08-22",
-        status: "Active",
+        status: "Expired",
         skills: ["Jenkins", "CI/CD", "DevOps", "Automation", "Pipeline"],
         description: "Validates proficiency in using and administering Jenkins for continuous integration and delivery.",
-        link: "https://www.linuxfoundation.org"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     },
     {
         id: 8,
-        title: "Oracle Certified Associate Java Programmer",
-        issuer: "Oracle",
-        credentialId: "OCAJP-2023-6789",
-        issuedDate: "2023-09-12",
-        expiryDate: null,
-        status: "Lifetime",
+        title: "Java",
+        issuer: "Cutshort",
+        credentialId: "90121",
+        issuedDate: "2023-10-23",
+        expiryDate: "2024-10-23",
+        status: "Expired",
         skills: ["Java", "OOP", "Programming", "Java 8+", "Core Concepts"],
         description: "Demonstrates knowledge of Java programming fundamentals and core concepts.",
-        link: "https://www.oracle.com/certification/ocajp"
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 9,
+        title: "MySQL 5.6 Developer",
+        issuer: "HackerRank",
+        credentialId: "MYSQL-DEV-2023-7895",
+        issuedDate: "2023-09-25",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["MySQL", "Database Design", "SQL", "Performance Optimization"],
+        description: "Advanced certification in MySQL 5.6 covering advanced features and best practices.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    }
+    ,
+    {
+        id: 10,
+        title: "Prompt Engineering: How to Talk to the AIs",
+        issuer: "LinkedIn Learning",
+        credentialId: "PE-2025-001",
+        issuedDate: "2025-06-12",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Prompt Engineering", "Generative AI", "AI Communication", "AI Tools"],
+        description: "Learn how to effectively communicate with generative AI models through prompt engineering techniques.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 11,
+        title: "Data Streaming Engineer Fundations",
+        issuer: "Confluent",
+        credentialId: "KAFKA-DEV-2026-126",
+        issuedDate: "2026-02-05",
+        expiryDate: "2028-02-05",
+        status: "Active",
+        skills: ["Apache Kafka", "Streaming", "Event Processing", "Big Data"],
+        description: "Demonstrates expertise in developing applications with Apache Kafka.",
+        link: "https://certificates.confluent.io/c9ce6889-495c-4a2a-85f3-467e240edcfa#acc.truHik21"
+    },
+    {
+        id: 12,
+        title: "The OWASP Top 10 2025 - Deep Dive",
+        issuer: "Udemy",
+        credentialId: "UC-eb1f8c9e-5c3a-4d2b-9a1e-8f0b2c3d45f",
+        issuedDate: "2026-02-08",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["OWASP", "Security", "Web Applications"],
+        description: "Learn about the top 10 web application security risks and how to mitigate them.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 13,
+        title: "The Complete Guide to Becoming a Software Architect",
+        issuer: "Udemy",
+        credentialId: "UC-eb1f8c9e-5c3a-4d2b-9a1e-8f0b2c3d49e",
+        issuedDate: "2026-02-17",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Software Architecture", "System Design", "Leadership", "Communication"],
+        description: "Learn how to become a successful software architect and lead technical initiatives.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 14,
+        title: "AWS Partner: Generative AI Essentials - Training Badge",
+        issuer: "AWS",
+        credentialId: "UC-eb1f8c9e-5c3a-4d2b-9a1e-8f0b2c27dw",
+        issuedDate: "2026-05-13",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Generative AI", "AWS", "AI Services", "Cloud AI"],
+        description: "Learn the essentials of generative AI and how to leverage AWS AI services for building intelligent applications.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 15,
+        title: "Top Professional",
+        issuer: "Pro5 AI",
+        credentialId: "3616947084253980",
+        issuedDate: "2026-05-10",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Top Professional", "Pro5 AI", "Generative AI", "Best Practices"],
+        description: "Recognized as a top professional in the field of generative AI and Pro5 AI platform expertise.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
+    },
+    {
+        id: 16,
+        title: "Python",
+        issuer: "Udemy",
+        credentialId: "UC-eb1f8c9e-5c3a-4d2b-9a1e-8f0b2c3def8",
+        issuedDate: "2026-05-14",
+        expiryDate: null,
+        status: "Lifetime",
+        skills: ["Python", "Programming", "Data Science", "Machine Learning"],
+        description: "Learn Python programming from scratch and build real-world applications.",
+        link: "https://www.linkedin.com/in/yuvraj-sharma-684345221/details/certifications/"
     }
 ];
 
