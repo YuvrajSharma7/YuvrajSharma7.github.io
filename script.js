@@ -1366,22 +1366,22 @@ window.addEventListener('scroll', () => {
 });
 // ==================== VISITOR COUNTER ====================
 function initializeVisitorCounter() {
-    const visitCountKey = 'portfolio_visit_count';
-    let visitCount = localStorage.getItem(visitCountKey);
-
-    if (!visitCount) {
-        visitCount = 5;
-    } else {
-        visitCount = parseInt(visitCount) + 1;
-    }
-
-    localStorage.setItem(visitCountKey, visitCount);
-
     const visitCountElement = document.getElementById('visitCount');
+
     if (visitCountElement) {
-        visitCountElement.textContent = visitCount;
+        // Using visitor badge - auto-increments with each visit
+        // Format: https://visitor-badge.laobi.icu/badge?page_id={namespace}.{page_id}
+        const badgeUrl = 'https://visitor-badge.laobi.icu/badge?page_id=yuvraj-portfolio.home&title=Visitors&color=blue&style=flat';
+
+        const badge = document.createElement('img');
+        badge.src = badgeUrl;
+        badge.alt = 'Visitor Count Badge';
+        badge.style.height = '25px';
+        badge.style.borderRadius = '6px';
+
+        visitCountElement.innerHTML = '';
+        visitCountElement.appendChild(badge);
     }
 }
 
 document.addEventListener('DOMContentLoaded', initializeVisitorCounter);
-
