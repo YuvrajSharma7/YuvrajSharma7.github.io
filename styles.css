@@ -1569,7 +1569,7 @@ body {
 /* ==================== Certificate Card ==================== */
 .certificate-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 255, 255, 0.98) 100%);
-    padding: 30px;
+    padding: 12px;
     border-radius: 12px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
@@ -1617,16 +1617,16 @@ body {
 }
 
 .cert-icon {
-    font-size: 56px;
+    font-size: 36px;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
     position: relative;
     z-index: 1;
 }
 
 .certificate-card h4 {
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     color: var(--text-dark);
     position: relative;
     z-index: 1;
@@ -1637,7 +1637,7 @@ body {
     font-size: 14px;
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 1;
 }
@@ -1645,9 +1645,9 @@ body {
 /* ==================== Certificate Details ==================== */
 .cert-details {
     background: linear-gradient(135deg, rgba(15, 52, 96, 0.08), rgba(0, 212, 255, 0.08));
-    padding: 15px;
+    padding: 8px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 1;
 }
@@ -1656,7 +1656,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 13px;
 }
 
@@ -1679,7 +1679,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 1;
 }
@@ -1687,7 +1687,7 @@ body {
 .cert-tag {
     background: linear-gradient(135deg, rgba(15, 52, 96, 0.1), rgba(0, 212, 255, 0.1));
     color: var(--primary-color);
-    padding: 6px 14px;
+    padding: 6px 10px;
     border-radius: 15px;
     font-size: 12px;
     font-weight: 600;
@@ -1706,7 +1706,7 @@ body {
 .view-cert-btn {
     display: inline-block;
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 10px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-decoration: none;
@@ -1745,7 +1745,7 @@ body {
 
     .category-title {
         font-size: 28px;
-        margin: 40px 0 15px 0;
+        margin: 15px 0 15px 0;
     }
 
     .stats {
@@ -1764,7 +1764,7 @@ body {
 
     .certificate-card,
     .udemy-card {
-        padding: 20px;
+        padding: 10px;
     }
 }
 
