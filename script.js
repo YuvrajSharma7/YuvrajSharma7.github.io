@@ -1268,20 +1268,26 @@ window.addEventListener('scroll', () => {
         heroSection.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
     }
 });
+
 // ==================== VISITOR COUNTER ====================
 function initializeVisitorCounter() {
     const visitCountElement = document.getElementById('visitCount');
 
     if (visitCountElement) {
         // Using visitor badge - auto-increments with each visit
-        // Format: https://visitor-badge.laobi.icu/badge?page_id={namespace}.{page_id}
-        const badgeUrl = 'https://visitor-badge.laobi.icu/badge?page_id=yuvraj-portfolio.home&title=Visitors&color=blue&style=flat';
+        const badgeUrl = 'https://visitor-badge.laobi.icu/badge?page_id=yuvraj-portfolio.home&title=Visitors&color=blue&style=flat&left_color=%231b10b7&format=true';
 
         const badge = document.createElement('img');
         badge.src = badgeUrl;
         badge.alt = 'Visitor Count Badge';
         badge.style.height = '25px';
         badge.style.borderRadius = '6px';
+
+        // Center the badge
+        visitCountElement.style.display = 'flex';
+        visitCountElement.style.justifyContent = 'center';
+        visitCountElement.style.alignItems = 'center';
+        visitCountElement.style.gap = '0px';
 
         visitCountElement.innerHTML = '';
         visitCountElement.appendChild(badge);
